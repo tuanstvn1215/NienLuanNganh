@@ -1,0 +1,159 @@
+doctype html
+head
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm', crossorigin='anonymous')
+  link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css', integrity='sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==', crossorigin='anonymous', referrerpolicy='no-referrer')
+  link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
+  link(rel='stylesheet', href='/css/shop/header_footer.css')
+
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Thi&#x1EBF;t B&#x1ECB; &Dstrok;i&#x1EC7;n T&#x1EED; KTQ
+body
+  //- header
+  .header
+    .header--top
+      .container.header--top--inner
+        a.header--top--item(href='#')
+          i.far.fa-newspaper
+          |  Tin c&ocirc;ng ngh&#x1EC7;
+        a.header--top--item(href='#')
+          i.fas.fa-headset
+          |  T&#x1B0; v&#x1EA5;n mua h&agrave;ng
+        a.header--top--item(href='#')
+          i.fab.fa-facebook-messenger
+          |  Ch&abreve;m s&oacute;c
+          |                     kh&aacute;ch h&agrave;ng
+    .header--bottom
+      .container.header--bottom--inner
+        .row
+          .bottom--inner--left.col-2
+            a.brand(href='#')
+              img(height='80px', src='https://upanh.cf/er047intj9.gif', alt='')
+              span KTQ
+          .bottom--inner--center.col-5
+            input.form-control(type='text', placeholder='Tìm gì ghi vô')
+            span.search_btn
+              i.fas.fa-search
+          .bottom--inner--right.col-5
+            a.inner--right--item(href='#')
+              i.fas.fa-tag.icon
+              div Khuy&#x1EBF;n m&atilde;i
+            a.inner--right--item(href='#')
+              i.far.fa-clipboard.icon
+              div &Dstrok;&#x1A1;n h&agrave;ng
+            a.inner--right--item(href='#')
+              i.far.fa-bell.icon
+              div Th&ocirc;ng b&aacute;o
+            a.inner--right--item(href='#')
+              i.fas.fa-user-circle.icon
+              div T&agrave;i kho&#x1EA3;n
+            a.inner--right--item(href='#')
+              i.fas.fa-shopping-cart.icon
+              div Gi&#x1ECF; h&agrave;ng
+  //-end header
+  //- content
+  block content
+  //- end content
+  //- footer
+  .container-fluid.bg-newletter.wow.fadeInUp
+  .container.newletter
+    .row
+      .col-xl-7.col-lg-6.col-md-6.col-sm-12.newletter-title
+        i.fa.fa-sign-in
+        span Sign Up For Newsletter
+      .col-xl-5.col-lg-6.col-md-6.col-sm-12.newletter-content
+        input(type='email', placeholder='Your email address')
+        button Subscribe
+  .container.footer.wow.fadeInUp
+    .row
+      .col-xl-3.col-lg-3.col-md-12.col-sm-12.col-xs-12.footer-column.about-ft
+        .ttfooter-logo
+          a(href='./Index.html')
+            img(src='images/footer-logo.png', alt='footer-logo')
+        .ttfooter-desc Claritas processus Lorem ipsum dynamicus recmicus sequit qituconsut.
+      .col-xl-3.col-lg-3.col-md-4.col-sm-3.col-xs-6.footer-column.footer-extras
+        h5.list-title Extras
+        ul.list-unstyled
+          li
+            a(href='#') Brands
+          li
+            a(href='#') Gift Certificates
+          li
+            a(href='#') Specials
+          li
+            a(href='#') Site Map
+          li
+            a(href='#') Contact Us
+      .col-sm-3.col-lg-3.col-md-4.col-sm-4.col-xs-6.footer-column.footer-my-account
+        h5.list-title My Account
+        ul.list-unstyled
+          li
+            a(href='#') My Account
+          li
+            a(href='#') Order History
+          li
+            a(href='#') Wish List
+          li
+            a(href='#') Newsletter
+          li
+            a(href='#') Returns
+      .col-xl-3.col-lg-3.col-md-4.col-sm-5.col-xs-6.footer-column.footer-store-info
+        h5.list-title Store Information
+        ul.list-unstyled
+          li.contact-detail
+            .data.address
+              i.fa.fa-map-marker
+              .contact-address
+                | Demo Store
+                br
+                | United States
+          li.contact
+            .data.contact
+              i.fa.fa-phone
+              span.phone
+                a(href='#') 0123456789
+          li.fax
+            .data.fax
+              i.fa.fa-fax
+              span.fax-address
+                a(href='#') 0123-456-7890
+          li.email
+            .data.email
+              i.fa.fa-envelope
+              span.email-address
+                a(href='mailto:demo@gmail.com') demo@gmail.com
+  .footer-bottom.wow.fadeInUp
+    .container
+      .footer-bottom-link
+        p
+          | Ni&ecirc;n Lu&#x1EAD;n &copy; 2021 
+          span  Tu&#x1EA5;n - Kh&#x1EA3;i - Qu&iacute; 
+      .follow
+        ul.list-unstyled
+          li.facebook
+            a._blank(title='Facebook', href='#', target='_blank')
+              i.fa.fa-facebook
+          li.twitter
+            a._blank(title='Twitter', href='#', target='_blank')
+              i.fa.fa-twitter
+          li.rss
+            a._blank(title='RSS', href='#', target='_blank')
+              i.fa.fa-rss
+          li.google-plus
+            a._blank(title='Google Plus', rel='publisher', href='#', target='_blank')
+              i.fa.fa-google-plus
+          li.instagram
+            a._blank(title='instagram', rel='publisher', href='#', target='_blank')
+              i.fa.fa-instagram(aria-hidden='true')
+  #goToTop.goToTop.ttbox-img(title='Top', style='display: block;' href="#")
+  
+  script(src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous")
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+  script(src='https://kit.fontawesome.com/3405ce9d87.js', crossorigin='anonymous')
+  script(src="/js/shop/header_footer.js") 
+
+  //- end footer

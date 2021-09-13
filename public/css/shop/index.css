@@ -1,0 +1,127 @@
+.marquee {
+    margin-top: 10px;
+    height: 60px;
+}
+.banner {
+}
+.body-heading {
+    margin-top: 50px;
+}
+.text-container {
+    direction: ltr;
+    text-align: bottom;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #ffffff;
+}
+.text-headline {
+    width: 100%;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1.2;
+    overflow: visible;
+    word-break: keep-all;
+    text-align: center;
+    text-overflow: clip;
+}
+li {
+    list-style: outside none;
+}
+.tab {
+    margin-top: 15px;
+    text-align: center;
+    position: relative;
+    height: 19px;
+}
+.tab-list {
+    display: flex;
+    padding: 0px 450px;
+    justify-content: space-around;
+    font-size: large;
+    width: 100%;
+}
+.tab__item {
+    margin: auto;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.tab__item:hover {
+    cursor: pointer;
+    color: blue;
+}
+.tab__item--active {
+    text-decoration: underline;
+}
+.dt-items {
+    display: inline-flexbox;
+    flex-wrap: wrap;
+    padding: 15px 15px 10px;
+    position: relative;
+    height: 100%;
+}
+.dt-row-item {
+    padding: 12px;
+    position: relative;
+    height: 100%;
+}
+.img {
+    width: 200px;
+}
+.container-item {
+    height: 275px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    background-color: rgb(241, 233, 233);
+    margin: 10px 0px;
+}
+.highlight-product .container-6 {
+    height: 590px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5%;
+    padding: 10px 25px 10px 25px;
+}
+
+.dt-item {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4%;
+    background-color: rgb(241, 233, 233);
+    padding: 0px;
+    width: 100%;
+}
+.dt-item-img {
+    margin-bottom: 15px;
+    position: relative;
+    text-align: center;
+}
+.dt-info {
+    width: 100%;
+}
+.price {
+    font-size: 15px;
+    font-weight: 700;
+    color: #cb1c22;
+    line-height: normal;
+}
+.list1 {
+    background-color: rgb(241, 233, 233);
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.headdt-lable {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
