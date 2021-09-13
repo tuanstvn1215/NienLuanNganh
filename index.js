@@ -17,7 +17,9 @@ app.use(
     })
 )
 app.use(express.static('public'))
-
+app.get('', (req, res) => {
+    res.redirect('/shop')
+})
 app.use('/shop', shopRouter)
 
 app.listen(process.env.PORT || port, () => {
