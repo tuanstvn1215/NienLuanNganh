@@ -25,59 +25,23 @@ block content
                 .product-content-inner
                   .seller-container
                     .seller#seller
-                      
-                      if(user)
-                        
-                          .item-product-cart
-                            .item-inner
-                              .row.content-cart
-                                .product-cart-item-1
-                                  .item-product-inner
-                                    .item-product-img-checkbox
-                                      label.img-checkbox(for='')
-                                        input.check(type='checkbox')
-                                    .img-product
-                                      a.intended-img(href='#')
-                                        img(src='https://upanh.cf/kuha9aoc7o.jpg', alt='Nước Rửa Tay Lifebuoy 500g Sữa Dưỡng ẩm Giúp Chăm Sóc Và Bảo Vệ Khỏi 99.9% Vi Khuẩn Trên Tay')
-                                    .content-product
-                                      a.intended-content(href='#')
-                                        | N&#x1B0;&#x1EDB;c R&#x1EED;a Tay Lifebuoy 500g S&#x1EEF;a D&#x1B0;&#x1EE1;ng &#x1EA9;m Gi&uacute;p
-                                        | Ch&abreve;m S&oacute;c V&agrave; B&#x1EA3;o V&#x1EC7; Kh&#x1ECF;i 99.9% Vi Khu&#x1EA9;n Tr&ecirc;n Tay
-                                .product-cart-item-2
-                                  span.real-price 55.000&dstrok;
-                                  del.discout-price 69.000&dstrok;
-                                .product-cart-item-3
-                                  .qty
-                                    .btn-qty
-                                      span.qty-decrese
-                                        i.fas.fa-minus
-                                      input.qty-input(type='tel', value='1')
-                                      span.qty-increse
-                                        i.fas.fa-plus
-                                  span.qty-limit
-                                    | Ch&#x1EC9; c&ograve;n 2 s&#x1EA3;n ph&#x1EA9;m
-                                .product-cart-item-4
-                                  .final-price 
-                                    span.final-price-value 55.000
-                                    span đ
-                                .product-cart-item-5
-                                  i.far.fa-trash-alt.remove
-                      else
-                        script(src="/js/shop/cartWithnouser.js") 
+                      script(src="/js/shop/cartWithnouser.js") 
           .cart-total-price
             .total-inner
               .total-price
                 ul.total-price-item
                   li.price-item
                     span.prices-text T&#x1EA1;m t&iacute;nh
-                    span.prices-value 88.000&dstrok;
+                    span.prices-value-before#prices-value-before 0đ
+                     
                   li.price-item
                     span.prices-text T&#x1EA1;m t&iacute;nh
-                    span.prices-value 88.000&dstrok;
+                    span.prices-value-discount#prices-value-discount 0đ
+                     
                 .price-tt
                   span.prices-text T&#x1ED5;ng c&#x1ED9;ng
                   .prices-content
-                    span.prices-value-final 88.000&dstrok;
+                    span.prices-value-final#prices-value-final 0đ
                     span.prices-value-note (&Dstrok;&atilde; bao g&#x1ED3;m VAT n&#x1EBF;u c&oacute;)
             .cart-submit-button Mua H&agrave;ng (1)
   script(src="/js/shop/cart.js") 
