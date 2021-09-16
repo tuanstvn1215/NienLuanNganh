@@ -124,11 +124,13 @@ function updateCart() {
     let seller = document.getElementById('seller')
     let Cart = JSON.parse(localStorage.getItem('Cart'))
     seller.innerHTML = ''
-    Cart.forEach((item) => {
-        let price = parseInt(item.obj.price)
-        let discount = parseInt(item.obj.discount)
-        let quantity = parseInt(item.quantity)
-        seller.innerHTML += `<div class="item-product-cart">
+
+    if (Cart)
+        Cart.forEach((item) => {
+            let price = parseInt(item.obj.price)
+            let discount = parseInt(item.obj.discount)
+            let quantity = parseInt(item.quantity)
+            seller.innerHTML += `<div class="item-product-cart">
                                 <div class="item-inner">
                                     <div class="row content-cart">
                                         <div class="product-cart-item-1">
@@ -194,8 +196,8 @@ function updateCart() {
                                     </div>
                                 </div>
                             </div>`
-    })
-    let { prices, discounts } = sumtotal_cart()
+        })
+    let { prices, discounts } = sumtotal_cart() ? sumtotal_cart() : 0
     document.getElementById('prices-value-discount').innerText = discounts + 'đ'
     document.getElementById('prices-value-before').innerText = prices + 'đ'
     document.getElementById('prices-value-final').innerText =
