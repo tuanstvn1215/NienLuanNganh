@@ -1,4 +1,4 @@
-function updateCart() {
+function refreshCard() {
     let seller = document.getElementById('seller')
     let Cart = JSON.parse(localStorage.getItem('Cart'))
     Cart.forEach((item) => {
