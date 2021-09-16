@@ -25,7 +25,11 @@ addtoCart(test3, '45')
 addtoCart(test3, '416')
 addtoCart(test3, '427')
 addtoCart(test3, '438')
-updateCart()
+refreshCard()
+function qty_inputChange(event, id) {
+    let quantity = parseInt(event.target.value)
+    updateCard(quantity, id)
+}
 function sumtotal_cart() {
     let Cartstr = localStorage.getItem('Cart')
     let Cart
@@ -43,20 +47,6 @@ function sumtotal_cart() {
         discounts += ((price * discount) / 100) * quantity
     })
     return { prices: prices, discounts: discounts }
-}
-let qty_decrese = document.getElementsByClassName('qty-decrese')
-let qty_increse = document.getElementsByClassName('qty-increse')
-for (let index = 0; index < qty_decrese.length; index++) {
-    const element = qty_decrese[index]
-    element.addEventListener('click', () => {
-        sumtotal_cart()
-    })
-}
-for (let index = 0; index < qty_increse.length; index++) {
-    const element = qty_increse[index]
-    element.addEventListener('click', () => {
-        sumtotal_cart()
-    })
 }
 
 function addtoCart(obj, id) {
@@ -79,33 +69,33 @@ function addtoCart(obj, id) {
     }
     localStorage.removeItem('Cart')
     localStorage.setItem('Cart', JSON.stringify(Cart))
-    updateCart()
+    refreshCard()
 }
-function increseCart(id) {
-    let Cart = JSON.parse(localStorage.getItem('Cart'))
-    Cart.forEach((item) => {
-        if (item.id == id) {
-            item.quantity += 1
-        }
-        localStorage.removeItem('Cart')
-        localStorage.setItem('Cart', JSON.stringify(Cart))
-        updateCart()
-    })
+async function increseCart(id) {
+    let qty_input = document.getElementById('qty-input-' + id)
+    qty_input.value = parseInt(qty_input.value) + 1
+    updateCard(parseInt(qty_input.value), id)
 }
-function decreseCart(id) {
+async function decreseCart(id) {
+    let qty_input = document.getElementById('qty-input-' + id)
+    qty_input.value = parseInt(qty_input.value) - 1
+    updateCard(parseInt(qty_input.value), id)
+}
+async function updateCard(quantity, id) {
     let Cart = JSON.parse(localStorage.getItem('Cart'))
-    Cart.forEach((item) => {
+    await Cart.forEach((item) => {
         if (item.id == id) {
-            if (item.quantity > 0) item.quantity += -1
+            if (quantity >= 0) item.quantity = quantity
         }
     })
     localStorage.removeItem('Cart')
     localStorage.setItem('Cart', JSON.stringify(Cart))
-    updateCart()
+    refreshCard()
 }
-function removeCart(id) {
+
+async function removeCart(id) {
     let Cart = JSON.parse(localStorage.getItem('Cart'))
-    Cart.forEach((item) => {
+    await Cart.forEach((item) => {
         if (item.id == id) {
             let pos = Cart.indexOf(item)
             Cart.splice(pos, 1)
@@ -113,20 +103,20 @@ function removeCart(id) {
     })
     localStorage.removeItem('Cart')
     localStorage.setItem('Cart', JSON.stringify(Cart))
-    updateCart()
+    refreshCard()
 }
 function removeAllCart() {
     localStorage.removeItem('Cart')
-    updateCart()
+    refreshCard()
 }
-localStorage.getItem('cart')
-function updateCart() {
+
+async function refreshCard() {
     let seller = document.getElementById('seller')
     let Cart = JSON.parse(localStorage.getItem('Cart'))
     seller.innerHTML = ''
 
     if (Cart)
-        Cart.forEach((item) => {
+        await Cart.forEach((item) => {
             let price = parseInt(item.obj.price)
             let discount = parseInt(item.obj.discount)
             let quantity = parseInt(item.quantity)
@@ -136,9 +126,7 @@ function updateCart() {
                                         <div class="product-cart-item-1">
                                             <div class="item-product-inner">
                                                 <div class="item-product-img-checkbox">
-                                                    <label for="" class="img-checkbox">
-                                                        <input type="checkbox" class="check">
-                                                    </label>
+                                                   
                                                 </div>
                                                 <div class="img-product">
                                                     <a href="#" class="intended-img">
@@ -169,7 +157,11 @@ function updateCart() {
                                                     }')">
                                                         <i class="fas fa-minus" ></i>
                                                     </span>
-                                                    <input type="tel" class="qty-input" value=${quantity}>
+                                                    <input type="tel" class="qty-input" id="qty-input-${
+                                                        item.id
+                                                    }" onchange="qty_inputChange(event,${
+                item.id
+            })" value=${quantity}>
                                                     <span class="qty-increse" onclick="increseCart('${
                                                         item.id
                                                     }')">
