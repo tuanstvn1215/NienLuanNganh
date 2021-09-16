@@ -1,3 +1,20 @@
+localStorage.clear()
+var test2 = {
+    img: 'https://upanh.cf/kuha9aoc7o.jpg',
+    name: 'nước rửa tay',
+    price: 5500,
+    discount: 10,
+}
+var test3 = {
+    img: 'https://upanh.cf/kuha9aoc7o.jpg',
+    name: 'nước rửa chân',
+    price: 6000,
+    discount: 10,
+}
+addtoCart(test2, '1')
+addtoCart(test3, '2')
+addtoCart(test3, '3')
+addtoCart(test3, '4')
 updateCart()
 function sumtotal_cart() {
     let Cartstr = localStorage.getItem('Cart')
@@ -32,22 +49,6 @@ for (let index = 0; index < qty_increse.length; index++) {
     })
 }
 
-var test2 = {
-    img: 'https://upanh.cf/kuha9aoc7o.jpg',
-    name: 'nước rửa tay',
-    price: 5500,
-    discount: 10,
-}
-var test3 = {
-    img: 'https://upanh.cf/kuha9aoc7o.jpg',
-    name: 'nước rửa chân',
-    price: 6000,
-    discount: 10,
-}
-addtoCart(test2, '1')
-addtoCart(test3, '2')
-addtoCart(test3, '3')
-addtoCart(test3, '4')
 function addtoCart(obj, id) {
     let Cartstr = localStorage.getItem('Cart')
     let Cart
