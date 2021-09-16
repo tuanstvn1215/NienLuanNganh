@@ -7,7 +7,7 @@
     background-color: rgba(219, 219, 219, 0.616);
 }
 .shopping-cart .main-product-cart {
-    height: 1000px;
+    min-height: 1000px;
     width: 100%;
 }
 .shopping-cart .wrap-intended-cart {
@@ -21,15 +21,18 @@
     flex-wrap: nowrap;
     justify-content: space-between;
     padding-top: 20px;
+    padding-bottom: 20px;
     margin-bottom: 100px;
 }
 .shopping-cart .cart-inner {
+    overflow-y: visible;
+
     width: 910px;
-    height: 529px;
+    min-height: 529px;
 }
 .shopping-cart .cart-total-price {
     width: 315px;
-    height: 529px;
+    min-height: 529px;
 }
 .shopping-cart .product-title {
     font-size: 20px;
