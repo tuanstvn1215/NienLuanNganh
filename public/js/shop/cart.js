@@ -88,10 +88,10 @@ function decreseCart(id) {
         if (item.id == id) {
             if (item.quantity > 0) item.quantity += -1
         }
-        localStorage.clear()
-        localStorage.setItem('Cart', JSON.stringify(Cart))
-        updateCart()
     })
+    localStorage.clear()
+    localStorage.setItem('Cart', JSON.stringify(Cart))
+    updateCart()
 }
 function removeCart(id) {
     let Cart = JSON.parse(localStorage.getItem('Cart'))
@@ -149,8 +149,10 @@ function updateCart() {
                                         <div class="product-cart-item-3">
                                             <div class="qty">
                                                 <div class="btn-qty">
-                                                    <span class="qty-decrese">
-                                                        <i class="fas fa-minus"></i>
+                                                    <span class="qty-decrese" onclick="decreseCart('${
+                                                        item.id
+                                                    }')">
+                                                        <i class="fas fa-minus" ></i>
                                                     </span>
                                                     <input type="tel" class="qty-input" value=${quantity}>
                                                     <span class="qty-increse" onclick="increseCart('${
