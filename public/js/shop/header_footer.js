@@ -28,6 +28,11 @@ $(function () {
         return false
     })
 })
+$(document).ready(function () {
+    $('#phone-menu').click(function () {
+        $('#phone-menu-data').slideToggle('slow')
+    })
+})
 // facebook chat
 var chatbox = document.getElementById('fb-customer-chat')
 chatbox.setAttribute('page_id', '223488363019229')

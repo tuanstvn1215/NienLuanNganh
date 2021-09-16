@@ -32,28 +32,32 @@ body
         .row
           .bottom--inner--left.col-2
             a.brand(href='/shop')
-              img(height='80px', src='https://upanh.cf/er047intj9.gif', alt='')
+              img.img(height='80px', src='https://upanh.cf/er047intj9.gif', alt='')
               span KTQ
-          .bottom--inner--center.col-5
+          .bottom--inner--center.col-8.col-lg-4
             input.form-control(type='text', placeholder='Tìm gì ghi vô')
             span.search_btn
               i.fas.fa-search
-          .bottom--inner--right.col-5
-            a.inner--right--item(href='#')
-              i.fas.fa-tag.icon
-              .icon-text Khuy&#x1EBF;n m&atilde;i
-            a.inner--right--item(href='#')
-              i.far.fa-clipboard.icon
-              .icon-text &Dstrok;&#x1A1;n h&agrave;ng
-            a.inner--right--item(href='#')
-              i.far.fa-bell.icon
-              .icon-text Th&ocirc;ng b&aacute;o
-            a.inner--right--item(href='#')
-              i.fas.fa-user-circle.icon
-              .icon-text T&agrave;i kho&#x1EA3;n
-            a.inner--right--item(href='/shop/cart')
-              i.fas.fa-shopping-cart.icon
-              .icon-text Gi&#x1ECF; h&agrave;ng
+          .phone-menu-container.col-2
+            i.fas.fa-align-justify#phone-menu
+          .col-12.col-lg-6#phone-menu-data
+            .bottom--inner--right
+              a.inner--right--item(href='#')
+                i.fas.fa-tag.icon
+                .icon-text Khuy&#x1EBF;n m&atilde;i
+              a.inner--right--item(href='#')
+                i.far.fa-clipboard.icon
+                .icon-text &Dstrok;&#x1A1;n h&agrave;ng
+              a.inner--right--item(href='#')
+                i.far.fa-bell.icon
+                .icon-text Th&ocirc;ng b&aacute;o
+              a.inner--right--item(href='#')
+                i.fas.fa-user-circle.icon
+                .icon-text T&agrave;i kho&#x1EA3;n
+              a.inner--right--item(href='/shop/cart')
+                i.fas.fa-shopping-cart.icon
+                .icon-text Gi&#x1ECF; h&agrave;ng      
+            
   //-end header
   //- content
   block content
