@@ -13,13 +13,11 @@ block content
                 .row
                   .product-cart-item-1
                     .checkbox-product-all
-                      input.all-item-checkbox(type='checkbox')
-                      span.checkbox-lable T&#x1EA5;t c&#x1EA3; (2 s&#x1EA3;n ph&#x1EA9;m) 
                   .product-cart-item-2 &Dstrok;&#x1A1;n gi&aacute;
                   .product-cart-item-3 S&#x1ED1; l&#x1B0;&#x1EE3;ng
                   .product-cart-item-4 Th&agrave;nh ti&#x1EC1;n
                   .product-cart-item-5
-                    i.far.fa-trash-alt.remove 
+                    i.far.fa-trash-alt.remove(onclick='removeAllCart()')
             .product-scroller(style='height: auto; overflow-y: hidden;')
               .product-content
                 .product-content-inner

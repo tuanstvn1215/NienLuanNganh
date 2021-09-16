@@ -1,4 +1,4 @@
-localStorage.clear()
+localStorage.removeItem('Cart')
 var test2 = {
     img: 'https://upanh.cf/kuha9aoc7o.jpg',
     name: 'nước rửa tay',
@@ -67,7 +67,7 @@ function addtoCart(obj, id) {
     if (!flag) {
         Cart.push({ id: id, obj: obj, quantity: 1 })
     }
-    localStorage.clear()
+    localStorage.removeItem('Cart')
     localStorage.setItem('Cart', JSON.stringify(Cart))
     updateCart()
 }
@@ -77,7 +77,7 @@ function increseCart(id) {
         if (item.id == id) {
             item.quantity += 1
         }
-        localStorage.clear()
+        localStorage.removeItem('Cart')
         localStorage.setItem('Cart', JSON.stringify(Cart))
         updateCart()
     })
@@ -89,7 +89,7 @@ function decreseCart(id) {
             if (item.quantity > 0) item.quantity += -1
         }
     })
-    localStorage.clear()
+    localStorage.removeItem('Cart')
     localStorage.setItem('Cart', JSON.stringify(Cart))
     updateCart()
 }
@@ -101,11 +101,14 @@ function removeCart(id) {
             Cart.splice(pos, 1)
         }
     })
-    localStorage.clear()
+    localStorage.removeItem('Cart')
     localStorage.setItem('Cart', JSON.stringify(Cart))
     updateCart()
 }
-
+function removeAllCart() {
+    localStorage.removeItem('Cart')
+    updateCart()
+}
 localStorage.getItem('cart')
 function updateCart() {
     let seller = document.getElementById('seller')
