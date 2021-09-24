@@ -14,6 +14,20 @@ body
   #fb-root
   #fb-customer-chat.fb-customerchat
   //- end facebook chat
+  //- modal
+  link(rel="stylesheet", href="/css/shop/modal.css")
+  #Modal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='exampleModalLabel', aria-hidden='true')
+    .modal-dialog(role='document')
+        .modal-content
+            .modal-header
+                h5#ModalLabel.modal-title Modal title
+                button.close(type='button', data-dismiss='modal', aria-label='Close')
+                    span(aria-hidden='true') &times;
+            #modalMsg.modal-body
+            .modal-footer
+                button.btn.btn-danger(type='button', data-dismiss='modal') Đóng
+  
+  //- modal
   //- header
   .header
     .header--top
@@ -31,7 +45,7 @@ body
       .container.header--bottom--inner
         .row
           .bottom--inner--left.col-2
-            a.brand(href='/shop')
+            a.brand(href='')
               img.img(height='80px', src='https://upanh.cf/er047intj9.gif', alt='')
               span KTQ
           .bottom--inner--center.col-8.col-lg-4
@@ -154,13 +168,10 @@ body
             a._blank(title='instagram', rel='publisher', href='#', target='_blank')
               i.fa.fa-instagram(aria-hidden='true')
   #goToTop.goToTop.ttbox-img(title='Top', style='display: block;' href="#")
-  
-  script(src="https://code.jquery.com/jquery-3.6.0.js"
-  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous")
+
+  script(src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous")
   script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
   script(src='https://kit.fontawesome.com/3405ce9d87.js', crossorigin='anonymous')
   script(src="/js/shop/header_footer.js") 
-
   //- end footer
