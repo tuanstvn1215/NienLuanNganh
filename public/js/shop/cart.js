@@ -118,7 +118,7 @@ async function refreshCard() {
     if (Cart)
         await Cart.forEach((item) => {
             let price = parseInt(item.obj.price)
-            let discount = parseInt(item.obj.discount)
+            let discount = (parseInt(item.obj.discount) * price) / 100
             let quantity = parseInt(item.quantity)
             seller.innerHTML += `<div class="item-product-cart">
                                 <div class="item-inner">
@@ -176,8 +176,7 @@ async function refreshCard() {
                                         <div class="product-cart-item-4">
                                             <div class="final-price"><span class='final-price-value'>${
                                                 price * quantity -
-                                                ((price * discount) / 100) *
-                                                    quantity
+                                                discount * quantity
                                             }</span><span>đ</span></div>
                                         </div>
                                         <div class="product-cart-item-5">

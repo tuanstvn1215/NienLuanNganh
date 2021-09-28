@@ -371,7 +371,7 @@ a:hover {
     right: 100px;
     text-align: center;
     width: 40px;
-    z-index: 9;
+    z-index: 999;
 }
 #goToTop:hover {
     background: #0aa38f;

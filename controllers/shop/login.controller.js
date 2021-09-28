@@ -71,13 +71,18 @@ class LoginController extends Controller {
             })
             await account.save()
             let user = new UserModel({
+                account: account.id,
                 role: '2',
                 modify_at: Date.now(),
             })
             await user.save()
+            res.cookie('_id', account.id, {
+                signed: true,
+            })
         } catch (err) {
             console.log(err)
         }
+        res.json({ code: 200, message: 'Đăng kí thành công' })
     }
 }
 module.exports = new LoginController()
