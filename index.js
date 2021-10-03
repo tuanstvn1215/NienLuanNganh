@@ -18,7 +18,7 @@ app.use(
     })
 )
 app.post('/test', (req, res) => {
-    let ipCardAttempt = (req.headers['x-forwarded-for'] || '')
+    let ipCardAttempt = (req.connection.remoteAddress || '')
         .split(',')[0]
         .trim()
     console.log(ipCardAttempt)
