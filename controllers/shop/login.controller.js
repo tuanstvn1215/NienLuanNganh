@@ -47,6 +47,14 @@ class LoginController extends Controller {
     register = async (req, res) => {
         let username = req.body.username
         let password = req.body.password
+        let rppassword = req.body.rppassword
+        if (rppassword != password) {
+            res.json({
+                code: 403,
+                message: 'Nhập lại mật khẩu phải trùng với mật khẩu',
+            })
+            return
+        }
         console.log(req.body)
         //lấy dữ liệu từ database
         let userFormdb = await AccountModel.findOne({ username: username })

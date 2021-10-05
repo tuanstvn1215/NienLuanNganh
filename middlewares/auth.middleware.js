@@ -3,6 +3,7 @@ const UserModel = require('../models/user.model')
 
 module.exports.auth = async (req, res, next) => {
     // kiểm tra có signed Cookies hay không
+    console.log('dđ')
     let user
     if (req.signedCookies._id) {
         try {
