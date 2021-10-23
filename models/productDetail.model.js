@@ -1,11 +1,11 @@
 const mongoose = require('../core/model.js')
 const Schema = new mongoose.Schema({
     name: { type: String, required: true },
-    Manufacture: {
+    manufacture: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'ProductManufacture',
     },
-    Category: { type: mongoose.SchemaTypes.ObjectId, ref: 'ProductCategory' },
+    category: { type: mongoose.SchemaTypes.ObjectId, ref: 'ProductCategory' },
 })
 const ProductDetailModel = mongoose.model(
     'ProductDetail',

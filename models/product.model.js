@@ -1,6 +1,6 @@
 const mongoose = require('../core/model.js')
 const Schema = new mongoose.Schema({
-    name: { type: String, required: true },
+    origin: { type: mongoose.SchemaTypes.ObjectId, ref: 'ProductOrigon' },
     productDetail: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'ProductDetail',

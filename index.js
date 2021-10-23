@@ -18,7 +18,11 @@ app.use(
     })
 )
 app.post('/test', (req, res) => {
-    let ipCardAttempt = ('' || req.connection.remoteAddress)
+    let ipCardAttempt = (
+        req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        ''
+    )
         .split(',')[0]
         .trim()
     console.log(ipCardAttempt)
@@ -32,6 +36,28 @@ app.get('/admin', (req, res) => {
 })
 app.use('/', shopRouter)
 
+//sử lý lỗi
+
+app.use(function (req, res, next) {
+    res.status(404)
+
+    //trả về html page
+    if (req.accepts('html')) {
+        res.render('shop/error')
+        return
+    }
+
+    // trả về json
+    if (req.accepts('json')) {
+        res.json({ error: 'không tìm thấy trang' })
+        return
+    }
+
+    // trả về text send()
+    res.type('txt').send('không tìm thấy trang')
+})
+
+//chạy app
 app.listen(process.env.PORT || port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

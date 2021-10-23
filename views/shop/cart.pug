@@ -32,7 +32,7 @@ block content
                     span.prices-value-before#prices-value-before 0đ
                      
                   li.price-item
-                    span.prices-text T&#x1EA1;m t&iacute;nh
+                    span.prices-text Giảm giá
                     span.prices-value-discount#prices-value-discount 0đ
                      
                 .price-tt
@@ -40,5 +40,6 @@ block content
                   .prices-content
                     span.prices-value-final#prices-value-final 0đ
                     span.prices-value-note (&Dstrok;&atilde; bao g&#x1ED3;m VAT n&#x1EBF;u c&oacute;)
-            .cart-submit-button Mua H&agrave;ng (1)
+            form(action="/cart/checkout", method="post")
+              button(type='submit').cart-submit-button Mua H&agrave;ng (1)
   script(src="/js/shop/cart.js") 

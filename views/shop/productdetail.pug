@@ -1,0 +1,96 @@
+extends ../layouts/header_footer.pug
+block content
+  link(rel='stylesheet', href='/css/shop/productdetail.css')
+  .pd-wrap
+    .container
+      .heading-section
+      .row
+        .col-md-6
+          #slider.product-slider
+            .item
+              img#product-img(src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' style='width:100%')
+          .product-thumb
+            .item
+              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
+            .item
+              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
+            .item
+              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
+            .item
+              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
+
+        .col-md-6
+          .product-dtl
+            .product-info
+              .product-name Variable Product
+              .reviews-counter
+                .brand-name
+                  | Th&#x1B0;&#x1A1;ng hi&#x1EC7;u:
+                  a(href='#') aaaaa
+                  span.columm
+                  |  NSX: 
+                  a(href='#') aaaaaaaaaaa
+                .rate
+                  input#star5(type='radio', name='rate', value='5', checked='')
+                  label(for='star5', title='text') 5 stars
+                  input#star4(type='radio', name='rate', value='4', checked='')
+                  label(for='star4', title='text') 4 stars
+                  input#star3(type='radio', name='rate', value='3', checked='')
+                  label(for='star3', title='text') 3 stars
+                  input#star2(type='radio', name='rate', value='2')
+                  label(for='star2', title='text') 2 stars
+                  input#star1(type='radio', name='rate', value='1')
+                  label(for='star1', title='text') 1 star
+              .product-price-discount
+                span $39.00
+                span.line-through $29.00
+            .break-row
+              p
+                | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,adsssssssssssssssssssss,dsaaaaaaaaaaaa/asddddddddddd
+            .product-count
+              label(for='size') Quantity
+              form.display-flex(action='#')
+                .qtyminus -
+                input.qty(type='text', name='quantity', value='1')
+                .qtyplus +
+              a.round-white-btn(href='#') Mua Ngay
+              a.round-black-btn(href='#') Th&ecirc;m v&agrave;o gi&#x1ECF; h&agrave;ng
+      .product-info-tabs
+        ul#myTab.nav.nav-tabs(role='tablist')
+          li.nav-item
+            a#description-tab.nav-link.active(data-toggle='tab', href='#description', role='tab', aria-controls='description', aria-selected='true') Description
+          li.nav-item
+            a#review-tab.nav-link(data-toggle='tab', href='#review', role='tab', aria-controls='review', aria-selected='false') Reviews (0)
+        #myTabContent.tab-content
+          #description.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='description-tab')
+            | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+          #review.tab-pane.fade(role='tabpanel', aria-labelledby='review-tab')
+            .review-heading REVIEWS
+            p.mb-20 There are no reviews yet.
+            form.review-form
+              .form-group
+                label Your rating
+                .reviews-counter
+                  .rate
+                    input#star5(type='radio', name='rate', value='5')
+                    label(for='star5', title='text') 5 stars
+                    input#star4(type='radio', name='rate', value='4')
+                    label(for='star4', title='text') 4 stars
+                    input#star3(type='radio', name='rate', value='3')
+                    label(for='star3', title='text') 3 stars
+                    input#star2(type='radio', name='rate', value='2')
+                    label(for='star2', title='text') 2 stars
+                    input#star1(type='radio', name='rate', value='1')
+                    label(for='star1', title='text') 1 star
+              .form-group
+                label Your message
+                textarea.form-control(rows='10')
+              .row
+                .col-md-6
+                  .form-group
+                    input.form-control(type='text', name='', placeholder='Name*')
+                .col-md-6
+                  .form-group
+                    input.form-control(type='text', name='', placeholder='Email Id*')
+              button.round-blacks-btn Submit Review
+  script(src="/js/shop/productdetail.js") 
