@@ -1,0 +1,42 @@
+extends ./blocks/nav.pug
+block content
+  link(rel="stylesheet", href="/css/admin/list-product.css")
+  .app-content
+    #main
+      .app-title
+        ul.app-breadcrumb.breadcrumb
+          li.breadcrumb-item  Th&#x1ED1;ng k&ecirc;
+          #time.ontime
+      // <div class="row">
+      .tile
+        h3.tile-title Danh s&aacute;ch ngu&#x1ED3;n h&agrave;ng
+        a(href='list-provider.html')
+          button.btn.btn-primary.add--order(type='button')
+            | Danh s&aacute;ch nh&agrave; cung c&#x1EA5;p
+        table.table.table-bordered.table-hover
+          thead.thead-light
+            tr
+              th(scope='col')
+                .form-check
+                  input#flexCheckDefault.form-check-input(type='checkbox', value='')
+                  label.form-check-label(for='flexCheckDefault')
+              th(scope='col') ID
+              th(scope='col') T&ecirc;n nh&agrave; s&#x1EA3;n xu&#x1EA5;t
+              th(scope='col') T&ecirc;n s&#x1EA3;n ph&#x1EA9;m
+              th(scope='col') Lo&#x1EA1;i s&#x1EA3;n ph&#x1EA9;m
+              th(scope='col') S&#x1ED1; l&#x1B0;&#x1EE3;ng
+              th(scope='col') T&iacute;nh n&abreve;ng
+          tbody
+            tr
+              th(scope='row')
+              td 1
+              td abc
+              td asus
+              td laptop
+              td 2
+              td
+                i.fas.fa-trash-alt.icon--delete.backgrd
+                i.fas.fa-edit.backgrds
+      // </div>
+  
+

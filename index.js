@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser')
 const serect = 'sdfsdfsdfsdfsdfsd12432%$$$%$$'
 const multipart = require('connect-multiparty')
 const shopRouter = require('./routes/shop.route')
+const adminRouter = require('./routes/admin.route')
+const { requireadmin } = require('./middlewares/auth.middleware')
 const multipartMiddleware = multipart()
 app.set('view engine', 'pug')
 app.set('views', './views')
@@ -31,9 +33,7 @@ app.post('/test', (req, res) => {
 app.use(multipartMiddleware)
 
 app.use(express.static('public'))
-app.get('/admin', (req, res) => {
-    res.send('hello')
-})
+app.use('/admin', requireadmin, adminRouter)
 app.use('/', shopRouter)
 
 //sử lý lỗi

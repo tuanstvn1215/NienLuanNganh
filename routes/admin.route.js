@@ -1,4 +1,7 @@
-const indexRouter = require('./admin/index.route')
 const Router = require('express').Router()
-Router.use('/', indexRouter)
+const productRouter = require('./admin/product.route')
+const productCategoryRouter = require('./admin/productCategory.route')
+
+Router.use('/product', productRouter)
 Router.use('/productCategory', productCategoryRouter)
+module.exports = Router

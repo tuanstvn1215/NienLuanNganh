@@ -1,0 +1,77 @@
+extends ./blocks/nav.pug
+block content
+  link(rel="stylesheet", href="/css/admin/add_product.css")
+  .app-content
+    #main
+      .app-title
+        ul.app-breadcrumb.breadcrumb
+          li.breadcrumb-item Danh s&aacute;ch s&#x1EA3;n ph&#x1EA9;m
+          li.breadcrumb-item
+            a(href='#') Th&ecirc;m s&#x1EA3;n ph&#x1EA9;m
+      .row
+        .col-md-12
+          .tile
+            h3.tile-title T&#x1EA1;o m&#x1EDB;i s&#x1EA3;n ph&#x1EA9;m
+            form(action='', method='post')
+              .row
+                .col-md-4
+                  label.control-label T&ecirc;n s&#x1EA3;n ph&#x1EA9;m 
+                  input.form-control(name='Name', type='text', placeholder='')
+                .col-md-4
+                  label.control-label S&#x1ED1; l&#x1B0;&#x1EE3;ng
+                  input.form-control(name='Quantity', type='number')
+                .col-md-4
+                  label.control-label T&igrave;nh tr&#x1EA1;ng
+                  select.form-control(name='status')
+                    option -- Ch&#x1ECD;n t&igrave;nh tr&#x1EA1;ng --
+                    option C&ograve;n h&agrave;ng
+                    option H&#x1EBF;t h&agrave;ng
+                .col-md-4
+                  label.control-label Lo&#x1EA1;i s&#x1EA3;n ph&#x1EA9;m
+                  select.form-control(name='category')
+                    option -- Ch&#x1ECD;n lo&#x1EA1;i s&#x1EA3;n ph&#x1EA9;m --
+                    option M&aacute;y t&iacute;nh
+                    option &Dstrok;i&#x1EC7;n Tho&#x1EA1;i
+                    option M&aacute;y t&iacute;nh b&#x1EA3;ng
+                    option Tai nghe
+                  br
+                  span.btn.btn-success#btn-add-category Thêm 
+                  span.btn.btn-warning#btn-change-category Sửa
+                  span.btn.btn-danger#btn-delete-category Xóa
+                .col-md-4
+                  label.control-label Nh&agrave; Cung C&#x1EA5;p
+                  select.form-control(name='provider')
+                    option -- Ch&#x1ECD;n nh&agrave; cung c&#x1EA5;p --
+                    option Phong v&utilde;
+                    option Th&#x1EBF; gi&#x1EDB;i di &dstrok;&#x1ED9;ng
+                    option FPT
+                    option V&otilde; Tr&#x1B0;&#x1EDD;ng
+                  br
+                  span.btn.btn-success#btn-add-provider Thêm
+                  span.btn.btn-warning#btn-change-provider Sửa
+                  span.btn.btn-danger#btn-delete-provider Xóa
+                .col-md-4
+                  label.control-label Gi&aacute; B&aacute;n
+                  input.form-control(name='Price', type='text')
+              br        
+            .picture
+              .control-label
+                h3 &#x1EA2;nh s&#x1EA3;n ph&#x1EA9;m
+              label#avatar_lb(for='avatar')
+                span
+                  | Ch&#x1ECD;n &#x1EA3;nh &dstrok;&#x1EC3; up 
+                  i.fas.fa-cloud-upload-alt
+              input#avatar(type='file', value='', name='avatar', onchange='fileupload(event)', accept='image/png, image/jpeg', multiple='')
+              #img_list
+            // motasanpham
+            .row
+              .col-md-12
+                .form-group
+                  label.control-label M&ocirc; t&#x1EA3; s&#x1EA3;n ph&#x1EA9;m
+                  textarea.form-control-des(name='Description', type='text', id='', cols='30', rows='10')
+            br
+            .buton
+              button.btn.btn-outline-success(type='button') L&#x1B0;u l&#x1EA1;i
+              a.btn.btn-outline-danger(href='#') H&#x1EE7;y b&#x1ECF;
+  script(type='module',src="/js/admin/add_product.js") 
+  

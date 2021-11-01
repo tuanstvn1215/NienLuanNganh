@@ -1,9 +1,34 @@
 const AccountModel = require('../models/account.model')
 const UserModel = require('../models/user.model')
-
+module.exports.requireadmin = async (req, res, next) => {
+    if (req.signedCookies._id) {
+        try {
+            user = {
+                account: await AccountModel.findById(req.signedCookies._id),
+                info: await UserModel.findOne({
+                    account: req.signedCookies._id,
+                }),
+            }
+            console.log('ád')
+            if (user.info.role != 1) {
+                res.json({
+                    code: 403,
+                    message: 'phải là admin để thực hiện chức năng này',
+                })
+                return
+            }
+            res.locals.user = user
+            user.info
+        } catch {
+            res.json({ code: 403, message: 'Lỗi lấy dữ liệu' })
+            return
+        }
+        next()
+    }
+}
 module.exports.auth = async (req, res, next) => {
     // kiểm tra có signed Cookies hay không
-    console.log('dđ')
+
     let user
     if (req.signedCookies._id) {
         try {
