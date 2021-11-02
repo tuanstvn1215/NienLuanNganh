@@ -38,7 +38,9 @@ class ProductProviderController extends Controller {
     }
     delete = async (req, res) => {
         try {
-            await ProductProviderModel.findByIdAndDelete(req.params.id)
+            await ProductProviderModel.findByIdAndUpdate(req.params.id, {
+                $set: { status: 0 },
+            })
             res.send({ code: 200, message: 'lưu thành công' })
         } catch (error) {
             res.send({

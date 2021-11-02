@@ -9,10 +9,10 @@ block content
           #time.ontime
       // <div class="row">
       .tile
-        h3.tile-title Danh s&aacute;ch ngu&#x1ED3;n h&agrave;ng
-        a(href='list-provider.html')
+        h3.tile-title Danh Sách Hàng Hóa
+        a(href='/admin/product/create')
           button.btn.btn-primary.add--order(type='button')
-            | Danh s&aacute;ch nh&agrave; cung c&#x1EA5;p
+            | Thêm Hàng Hóa
         table.table.table-bordered.table-hover
           thead.thead-light
             tr
@@ -27,16 +27,17 @@ block content
               th(scope='col') S&#x1ED1; l&#x1B0;&#x1EE3;ng
               th(scope='col') T&iacute;nh n&abreve;ng
           tbody
-            tr
-              th(scope='row')
-              td 1
-              td abc
-              td asus
-              td laptop
-              td 2
-              td
-                i.fas.fa-trash-alt.icon--delete.backgrd
-                i.fas.fa-edit.backgrds
+            each item in products
+              tr
+                th(scope='row')
+                td 1
+                td abc
+                td asus
+                td laptop
+                td 2
+                td
+                  i.fas.fa-trash-alt.icon--delete.backgrd
+                  i.fas.fa-edit.backgrds
       // </div>
   
 

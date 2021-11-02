@@ -12,6 +12,8 @@ const Schema = new mongoose.Schema({
         type: [String],
         require: true,
     },
+    add_at: { type: Date, default: Date.now },
+    description: { type: String },
 })
 const ProductModel = mongoose.model('Product', Schema, 'products')
 module.exports = ProductModel

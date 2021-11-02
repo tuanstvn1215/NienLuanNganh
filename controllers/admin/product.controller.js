@@ -15,8 +15,13 @@ class ProductController extends Controller {
     }
     show = async (req, res) => {
         const product_category = await ProductCategoryModel.find({ status: 1 })
-
-        res.render('admin/product', { product_category: product_category })
+        const products = await ProductModel.find()
+            .sort({ add_at: -1 })
+            .limit(30)
+        res.render('admin/product', {
+            product_category: product_category,
+            products: products,
+        })
     }
     create = async (req, res) => {
         const product_category = await ProductCategoryModel.find({ status: 1 })
@@ -35,6 +40,7 @@ class ProductController extends Controller {
         let provider = req.body.provider
         let category = req.body.category
         let price = req.body.price
+        let description = req.body.description
         let img = []
         try {
             const imageFile = [].concat(req.files.img)
