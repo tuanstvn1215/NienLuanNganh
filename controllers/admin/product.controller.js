@@ -1,14 +1,24 @@
 const Controller = require('../../core/controller')
-
+const ProductCategoryModel = require('../../models/productCategory.model')
+const ProductProviderModel = require('../../models/productProvider.model')
 class ProductController extends Controller {
     constructor() {
         super()
     }
     show = async (req, res) => {
-        res.render('admin/product', {})
+        const product_category = await ProductCategoryModel.find({ status: 1 })
+
+        res.render('admin/product', { product_category: product_category })
     }
     create = async (req, res) => {
-        res.render('admin/add_product', {})
+        const product_category = await ProductCategoryModel.find({ status: 1 })
+        const product_provider = await ProductProviderModel.find({ status: 1 })
+
+        res.render('admin/add_product', {
+            product_category: product_category,
+            product_provider: product_provider,
+            ref: req.originalUrl,
+        })
     }
     store = async (req, res) => {
         try {

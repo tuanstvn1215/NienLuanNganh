@@ -13,5 +13,8 @@ Router.use('/', indexRouter)
 Router.use('/cart', cartRouter)
 Router.use('/login', Auth.redirectWhenAuth, loginRouter)
 Router.use('/account', accountRouter)
-Router.use('/product', productRouter)
+Router.get('/logout', async (req, res) => {
+    console.log(res.clearCookie('_id'))
+    res.redirect('/')
+})
 module.exports = Router

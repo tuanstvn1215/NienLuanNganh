@@ -1,15 +1,14 @@
 const Controller = require('../../core/controller')
-const ProductCategoryModel = require('../../models/productCategory.model')
-class ProductCategoryController extends Controller {
+const ProductProviderModel = require('../../models/productProvider.model')
+class ProductProviderController extends Controller {
     constructor() {
         super()
     }
-
     store = async (req, res) => {
         try {
-            const categoryname = req.body.categoryname
-            await ProductCategoryModel.insertMany({
-                name: categoryname,
+            const name = req.body.name
+            await ProductProviderModel.insertMany({
+                name: name,
                 status: 1,
             })
             res.send({ code: 200, message: 'lưu thành công' })
@@ -23,10 +22,10 @@ class ProductCategoryController extends Controller {
 
     edit = async (req, res) => {
         try {
-            console.log(req.params.id + req.body.categoryname)
-            const categoryname = req.body.categoryname
-            await ProductCategoryModel.findByIdAndUpdate(req.params.id, {
-                $set: { name: categoryname },
+            console.log(req.params.id + req.body.name)
+            const name = req.body.name
+            await ProductProviderModel.findByIdAndUpdate(req.params.id, {
+                $set: { name: name },
             })
 
             res.send({ code: 200, message: 'lưu thành công' })
@@ -39,7 +38,7 @@ class ProductCategoryController extends Controller {
     }
     delete = async (req, res) => {
         try {
-            await ProductCategoryModel.findByIdAndDelete(req.params.id)
+            await ProductProviderModel.findByIdAndDelete(req.params.id)
             res.send({ code: 200, message: 'lưu thành công' })
         } catch (error) {
             res.send({
@@ -49,4 +48,4 @@ class ProductCategoryController extends Controller {
         }
     }
 }
-module.exports = new ProductCategoryController()
+module.exports = new ProductProviderController()

@@ -27,6 +27,7 @@ document.getElementById('btn-add-category').addEventListener('click', () => {
     btn_add_product.addEventListener('click', () => {
         const categoryname =
             modal_manage.getElementsByClassName('CategoryName')[0].value
+
         fetch('/admin/productCategory/create', {
             method: 'post',
             headers: {
@@ -37,10 +38,91 @@ document.getElementById('btn-add-category').addEventListener('click', () => {
         })
             .then((response) => response.json())
             .then((data) => {
-                const modal_confirm = document.getElementById('')
+                modal_manage.getElementsByClassName(
+                    'modal-header'
+                )[0].innerHTML = 'Thông Báo'
+                modal_manage.getElementsByClassName('modal-body')[0].innerHTML =
+                    data.message
             })
             .catch()
     })
+    setTimeout(() => {
+        location.reload()
+    }, 3000)
+})
+document.getElementById('btn-change-category').addEventListener('click', () => {
+    const modal_manage = document.getElementById('modal-manage')
+    const category_id = document.getElementById('selected-category').value
+    modal_manage.getElementsByClassName('modal-header')[0].innerHTML = 'Sửa'
+    modal_manage.getElementsByClassName('modal-body')[0].style.display = 'block'
+    modal_manage.getElementsByClassName('modal-body')[0].innerHTML = `
+                                <label for="">Sửa Loại Hàng Hóa</label>
+                                <input type="text" class="form-control CategoryName" name="CategoryName" id="input_add_product" aria-describedby="helpId" placeholder="">
+                                <br>
+                                <span class="btn btn-success btn_add_product" >Sửa</span>`
+    $('#modal-manage').modal('show')
+    const btn_add_product =
+        modal_manage.getElementsByClassName('btn_add_product')[0]
+    btn_add_product.addEventListener('click', () => {
+        const categoryid = document.getElementById('selected-category').value
+        const categoryname =
+            modal_manage.getElementsByClassName('CategoryName')[0].value
+        console.log(categoryname)
+        fetch('/admin/productCategory/' + categoryid, {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                Cookie: document.cookie,
+            },
+            body: JSON.stringify({ categoryname: categoryname }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                modal_manage.getElementsByClassName(
+                    'modal-header'
+                )[0].innerHTML = 'Thông Báo'
+                modal_manage.getElementsByClassName('modal-body')[0].innerHTML =
+                    data.message
+            })
+            .catch()
+    })
+    setTimeout(() => {
+        location.reload()
+    }, 3000)
+})
+document.getElementById('btn-delete-category').addEventListener('click', () => {
+    const modal_manage = document.getElementById('modal-manage')
+    const categoryid = document.getElementById('selected-category').value
+    modal_manage.getElementsByClassName('modal-header')[0].innerHTML =
+        'Xóa Loại Hàng Hóa'
+    modal_manage.getElementsByClassName('modal-body')[0].style.display = 'block'
+    modal_manage.getElementsByClassName('modal-body')[0].innerHTML = `
+                             
+                                <span class="btn btn-danger btn_add_product" >Xóa</span>`
+    $('#modal-manage').modal('show')
+    const btn_add_product =
+        modal_manage.getElementsByClassName('btn_add_product')[0]
+    btn_add_product.addEventListener('click', () => {
+        fetch('/admin/productCategory/delete/' + categoryid, {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                Cookie: document.cookie,
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                modal_manage.getElementsByClassName(
+                    'modal-header'
+                )[0].innerHTML = 'Thông Báo'
+                modal_manage.getElementsByClassName('modal-body')[0].innerHTML =
+                    data.message
+            })
+            .catch()
+    })
+    setTimeout(() => {
+        location.reload()
+    }, 3000)
 })
 
 console.log(getCookie('_id'))

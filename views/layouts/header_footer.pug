@@ -32,15 +32,14 @@ body
   .header
     .header--top
       .container.header--top--inner
-        a.header--top--item(href='#')
-          i.far.fa-newspaper
-          span.icon-text Ch&abreve;m s&oacute;c kh&aacute;ch h&agrave;ng
-        a.header--top--item(href='#')
-          i.fas.fa-headset
-          span.icon-text Ch&abreve;m s&oacute;c kh&aacute;ch h&agrave;ng
-        a.header--top--item(href='#')
-          i.fab.fa-facebook-messenger
-          span.icon-text Ch&abreve;m s&oacute;c kh&aacute;ch h&agrave;ng
+        if(user)
+          a.header--top--item(href='/logout')
+            
+            span.icon-text Đăng xuất
+        else
+          a.header--top--item(href='/login')
+           
+            span.icon-text Đăng nhập
     .header--bottom
       .container.header--bottom--inner
         .row

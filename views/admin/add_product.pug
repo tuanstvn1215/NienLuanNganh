@@ -28,12 +28,9 @@ block content
                     option H&#x1EBF;t h&agrave;ng
                 .col-md-4
                   label.control-label Lo&#x1EA1;i s&#x1EA3;n ph&#x1EA9;m
-                  select.form-control(name='category')
-                    option -- Ch&#x1ECD;n lo&#x1EA1;i s&#x1EA3;n ph&#x1EA9;m --
-                    option M&aacute;y t&iacute;nh
-                    option &Dstrok;i&#x1EC7;n Tho&#x1EA1;i
-                    option M&aacute;y t&iacute;nh b&#x1EA3;ng
-                    option Tai nghe
+                  select.form-control(name='category' id='selected-category')
+                    each item in product_category
+                      option(value=`${item.id}` ) #{item.name} 
                   br
                   span.btn.btn-success#btn-add-category Thêm 
                   span.btn.btn-warning#btn-change-category Sửa

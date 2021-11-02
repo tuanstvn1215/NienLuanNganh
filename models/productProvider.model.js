@@ -2,9 +2,9 @@ const mongoose = require('../core/model.js')
 const Schema = new mongoose.Schema({
     name: { type: String, required: true },
 })
-const ProductManufactureModel = mongoose.model(
-    'ProductManufacture',
+const ProductProviderModel = mongoose.model(
+    'ProductOrigin',
     Schema,
-    'productManufactures'
+    'productOrigins'
 )
-module.exports = ProductManufactureModel
+module.exports = ProductProviderModel

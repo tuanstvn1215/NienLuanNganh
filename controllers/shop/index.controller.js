@@ -4,7 +4,7 @@ class IndexController extends Controller {
         super()
     }
     getIndex = async (req, res) => {
-        res.render('shop/index', {})
+        res.render('shop/index', { user: res.locals.user })
     }
 }
 module.exports = new IndexController()

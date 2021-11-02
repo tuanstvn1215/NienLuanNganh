@@ -4,7 +4,7 @@ class productController extends Controller {
         super()
     }
     show = async (req, res) => {
-        res.render('shop/productdetail', {})
+        res.render('shop/productdetail', { user: res.locals.user })
     }
 }
 module.exports = new productController()

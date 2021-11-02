@@ -20,7 +20,7 @@ class CardController extends Controller {
         )
     }
     getIndex = async (req, res) => {
-        res.render('shop/cart', {})
+        res.render('shop/cart', { user: res.locals.user })
     }
     checkout = async (req, res) => {
         const bill = new BillModel({ value: 1000.12, status: 0 })
