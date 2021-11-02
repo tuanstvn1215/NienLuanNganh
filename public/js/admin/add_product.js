@@ -48,10 +48,10 @@ document.getElementById('btn-add-category').addEventListener('click', () => {
                     data.message
             })
             .catch()
+        setTimeout(() => {
+            location.reload()
+        }, 3000)
     })
-    setTimeout(() => {
-        location.reload()
-    }, 3000)
 })
 document.getElementById('btn-change-category').addEventListener('click', () => {
     const modal_manage = document.getElementById('modal-manage')
@@ -88,10 +88,10 @@ document.getElementById('btn-change-category').addEventListener('click', () => {
                     data.message
             })
             .catch()
+        setTimeout(() => {
+            location.reload()
+        }, 3000)
     })
-    setTimeout(() => {
-        location.reload()
-    }, 3000)
 })
 document.getElementById('btn-delete-category').addEventListener('click', () => {
     const modal_manage = document.getElementById('modal-manage')
@@ -122,10 +122,10 @@ document.getElementById('btn-delete-category').addEventListener('click', () => {
                     data.message
             })
             .catch()
+        setTimeout(() => {
+            location.reload()
+        }, 3000)
     })
-    setTimeout(() => {
-        location.reload()
-    }, 3000)
 })
 //----------------------------------------
 document.getElementById('btn-add-provider').addEventListener('click', () => {
@@ -200,10 +200,10 @@ document.getElementById('btn-change-provider').addEventListener('click', () => {
                     data.message
             })
             .catch()
+        setTimeout(() => {
+            location.reload()
+        }, 3000)
     })
-    setTimeout(() => {
-        location.reload()
-    }, 3000)
 })
 document.getElementById('btn-delete-provider').addEventListener('click', () => {
     const modal_manage = document.getElementById('modal-manage')
@@ -234,10 +234,10 @@ document.getElementById('btn-delete-provider').addEventListener('click', () => {
                     data.message
             })
             .catch()
+        setTimeout(() => {
+            location.reload()
+        }, 3000)
     })
-    setTimeout(() => {
-        location.reload()
-    }, 3000)
 })
 //----------------------------------------
 console.log(getCookie('_id'))
