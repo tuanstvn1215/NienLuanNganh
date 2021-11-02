@@ -37,14 +37,15 @@ module.exports.auth = async (req, res, next) => {
                 }),
             }
             res.locals.user = user
-            console.log(res.locals)
         } catch {
             res.json({ code: 403, message: 'Lỗi lấy dữ liệu' })
             return
         }
         next()
+        return
     }
     next()
+    return
 }
 module.exports.redirectWhenAuth = async (req, res, next) => {
     if (req.signedCookies._id) res.redirect('/')

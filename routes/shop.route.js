@@ -5,9 +5,9 @@ const indexRouter = require('./shop/index.route')
 const cartRouter = require('./shop/cart.route')
 const accountRouter = require('./shop/account.route')
 const loginRouter = require('./shop/login.route')
-const productRouter = require('./shop/product.route')
-Router.get('/error/:id', ErrorController.getError)
+
 Router.use(Auth.auth)
+
 Router.use('/cart', cartRouter)
 Router.use('/', indexRouter)
 

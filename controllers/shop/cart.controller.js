@@ -23,8 +23,10 @@ class CardController extends Controller {
         res.render('shop/cart', { user: res.locals.user })
     }
     checkout = async (req, res) => {
-        const bill = new BillModel({ value: 1000.12, status: 0 })
-        await bill.save()
+        const bill = (
+            await BillModel.insertMany({ value: 1000.12, status: 0 })
+        )[0]
+        console.log(res.locals)
         const successUrl =
             (req.headers['x-forwarded-proto']
                 ? req.headers['x-forwarded-proto'] + '://'
@@ -38,7 +40,6 @@ class CardController extends Controller {
                 : 'http://') +
             req.headers.host +
             '/cart'
-
         //   tạo request đến paypal
         let request = new paypalSDK.orders.OrdersCreateRequest()
         request.requestBody({
@@ -59,7 +60,7 @@ class CardController extends Controller {
                 },
             ],
         })
-        res.send('sdfsdf')
+
         // thực hiện request và lưu vào biến response
         let response = await this.paypalclient.execute(request).catch((ex) => {
             console.log(ex)
