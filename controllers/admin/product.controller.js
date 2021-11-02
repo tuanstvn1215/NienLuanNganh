@@ -75,21 +75,12 @@ class ProductController extends Controller {
                     message: 'lưu thất bại vì lỗi: ' + err.message,
                 })
             })
-            res.json({
-                code: 200,
-                message: 'lưu thành công',
-            })
+            res.redirect('/admin/product')
         } catch (ex) {
             res.json({
                 code: 403,
                 message: 'lưu thất bại vì lỗi: ' + ex.message,
             })
-        }
-
-        try {
-            res.send({ code: 200, message: 'lưu thành công' })
-        } catch (error) {
-            res.redirct('/admin/product/create')
         }
     }
     detele = async (req, res) => {

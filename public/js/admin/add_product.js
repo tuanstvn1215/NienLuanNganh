@@ -161,10 +161,10 @@ document.getElementById('btn-add-provider').addEventListener('click', () => {
                     data.message
             })
             .catch()
+        setTimeout(() => {
+            location.reload()
+        }, 3000)
     })
-    setTimeout(() => {
-        location.reload()
-    }, 3000)
 })
 document.getElementById('btn-change-provider').addEventListener('click', () => {
     const modal_manage = document.getElementById('modal-manage')
