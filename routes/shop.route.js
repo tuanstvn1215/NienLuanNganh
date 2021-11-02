@@ -8,9 +8,9 @@ const loginRouter = require('./shop/login.route')
 const productRouter = require('./shop/product.route')
 Router.get('/error/:id', ErrorController.getError)
 Router.use(Auth.auth)
-
-Router.use('/', indexRouter)
 Router.use('/cart', cartRouter)
+Router.use('/', indexRouter)
+
 Router.use('/login', Auth.redirectWhenAuth, loginRouter)
 Router.use('/account', accountRouter)
 Router.get('/logout', async (req, res) => {

@@ -19,17 +19,7 @@ app.use(
         extended: true,
     })
 )
-app.post('/test', (req, res) => {
-    let ipCardAttempt = (
-        req.headers['x-forwarded-for'] ||
-        req.connection.remoteAddress ||
-        ''
-    )
-        .split(',')[0]
-        .trim()
-    console.log(ipCardAttempt)
-    res.send(ipCardAttempt)
-})
+
 app.use(multipartMiddleware)
 
 app.use(express.static('public'))

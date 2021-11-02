@@ -59,15 +59,18 @@ class CardController extends Controller {
                 },
             ],
         })
+        res.send('sdfsdf')
         // thực hiện request và lưu vào biến response
         let response = await this.paypalclient.execute(request).catch((ex) => {
             console.log(ex)
             res.send('xảy ra lỗi')
         })
 
+        console.log(response.result.links)
         // redirect người dùng đến trang thanh toán của paypal
         response.result.links.forEach((item, index) => {
             if (item.rel == 'approve') {
+                console.log(item.href)
                 res.redirect(item.href)
                 return
             }
