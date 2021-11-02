@@ -6,7 +6,7 @@ class ProductProviderController extends Controller {
     }
     store = async (req, res) => {
         try {
-            const name = req.body.name
+            const name = req.body.Providername
             await ProductProviderModel.insertMany({
                 name: name,
                 status: 1,
@@ -23,7 +23,7 @@ class ProductProviderController extends Controller {
     edit = async (req, res) => {
         try {
             console.log(req.params.id + req.body.name)
-            const name = req.body.name
+            const name = req.body.providername
             await ProductProviderModel.findByIdAndUpdate(req.params.id, {
                 $set: { name: name },
             })

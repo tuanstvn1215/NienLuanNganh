@@ -1,10 +1,11 @@
 const mongoose = require('../core/model.js')
 const Schema = new mongoose.Schema({
     name: { type: String, required: true },
+    status: { type: Number, required: true },
 })
 const ProductProviderModel = mongoose.model(
-    'ProductOrigin',
+    'ProductProvider',
     Schema,
-    'productOrigins'
+    'productproviders'
 )
 module.exports = ProductProviderModel
