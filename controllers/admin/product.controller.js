@@ -22,7 +22,7 @@ class ProductController extends Controller {
             .limit(30)
 
             .exec()
-        console.log(products)
+
         res.render('admin/product', {
             product_category: product_category,
             products: products,
@@ -47,6 +47,7 @@ class ProductController extends Controller {
         let price = req.body.price
         let description = req.body.description
         let img = []
+        console.log(req.body.description)
         try {
             const imageFile = [].concat(req.files.img)
             const paths = imageFile.map((item) => {
@@ -114,6 +115,7 @@ class ProductController extends Controller {
         let description = req.body.description
         let upanh = req.body.upanh
         let img = []
+        console.log(req.body.description)
         try {
             if (upanh) {
                 const imageFile = [].concat(req.files.img)
