@@ -5,4 +5,5 @@ Router.get('', productController.show)
 Router.get('/create', productController.create)
 Router.post('/create', productController.store)
 Router.get('/edit', productController.edit)
+Router.post('/edit', productController.update)
 module.exports = Router

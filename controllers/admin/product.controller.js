@@ -105,7 +105,7 @@ class ProductController extends Controller {
         })
     }
     update = async (req, res) => {
-        id = req
+        let id = req.query.id
         let name = req.body.name
         let status = req.body.status
         let provider = req.body.provider
@@ -133,7 +133,7 @@ class ProductController extends Controller {
                             })
                     })
                 )
-                await ProductModel.findByIdAndUpdate({
+                await ProductModel.findByIdAndUpdate(id, {
                     $set: {
                         name: name,
                         status: status,
@@ -151,8 +151,29 @@ class ProductController extends Controller {
                 })
                 res.redirect('/admin/product')
             } else {
+                await ProductModel.findByIdAndUpdate(id, {
+                    $set: {
+                        name: name,
+                        status: status,
+                        provider: provider,
+                        category: category,
+                        price: price,
+                        description: description,
+                    },
+                }).catch((err) => {
+                    res.json({
+                        code: 403,
+                        message: 'lưu thất bại vì lỗi: ' + err.message,
+                    })
+                })
+                res.redirect('/admin/product')
             }
-        } catch (error) {}
+        } catch (error) {
+            res.json({
+                code: 403,
+                message: 'lưu thất bại vì lỗi: ' + error.message,
+            })
+        }
     }
     detele = async (req, res) => {
         try {
