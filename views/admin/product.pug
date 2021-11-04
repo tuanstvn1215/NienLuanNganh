@@ -35,10 +35,11 @@ block content
                 if(item.status==2)
                   td Hết hàng
                 td
-                  a(href=`/admin/product/delete?id=${item.id}`)
-                    i.fas.fa-trash-alt.icon--delete.backgrd
+                  span(class='btn-delete-product' data-id=`${item.id}` href=`/admin/product/delete?id=${item.id}`)
+                    i(data-id=`${item.id}`).fas.fa-trash-alt.icon--delete.backgrd
                   a(href=`/admin/product/edit?id=${item.id}`)
                     i.fas.fa-edit.backgrds
       // </div>
+  script(src="/js/admin/product.js") 
   
 
