@@ -178,8 +178,15 @@ class ProductController extends Controller {
         }
     }
     detele = async (req, res) => {
+        let id = req.query.id
+        await ProductModel.findByIdAndUpdate(id,{status=0})
         try {
-        } catch (error) {}
+        } catch (error) {
+            res.json({
+                code: 403,
+                message: 'lưu thất bại vì lỗi: ' + error.message,
+            })
+        }
     }
 }
 
