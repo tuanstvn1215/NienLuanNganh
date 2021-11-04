@@ -6,8 +6,7 @@ const Schema = new mongoose.Schema({
     modify_at: { type: Date, required: true },
     email: { type: String },
     number: { type: Number },
-    age: { type: Number },
-    addresses: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Address' }],
+    address: { type: String },
     male: { type: Number },
     account: { type: mongoose.SchemaTypes.ObjectId, ref: 'Account' },
 })

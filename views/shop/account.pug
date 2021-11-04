@@ -14,7 +14,7 @@ block content
                 picture.avatar
               .items-info_content
                 h6.info-content_lable T&agrave;i kho&#x1EA3;n c&#x1EE7;a
-                h5.info-content_name Qu&iacute; &Dstrok;i&ecirc;n
+                h5.info-content_name #{user.info.name}
               span.close-account-navbar#close-account-navbar
                 i.fas.fa-times
             .items-info-list
@@ -39,28 +39,19 @@ block content
           .main-label Th&ocirc;ng tin t&agrave;i kho&#x1EA3;n
           .content-inner
             .content-body
-              form.body-items
+              form(method='POST', action=`/account/update?id=${user.info.id}`).body-items
                 .form-group.body-items-inner
                   .form-input_lable H&#x1ECD; v&agrave; t&ecirc;n
-                  input.form-input_input(type='text', value=`${user.info.name}`)
+                  input.form-input_input(type='text',name='name', value=`${user.info.name}`)
                 .body-items-inner
                   .form-input_lable Email
-                  input.form-input_input(type='text', value=`${user.info.email}`)
+                  input.form-input_input(type='text',name='email', value=`${user.info.email}`)
                 .body-items-inner
                   .form-input_lable S&#x1ED1; &dstrok;i&#x1EC7;n tho&#x1EA1;i
-                  input.form-input_input(type='tel', value=`${user.info.number}`)
+                  input.form-input_input(type='tel',name='number', value=`${user.info.number}`)
                 .body-items-inner
-                  .form-input_lable Gi&#x1EDB;i t&iacute;nh
-                  div
-                    label.gender-lable(for='')
-                      input(type='radio')
-                      span.gender-title Nam
-                    label.gender-lable(for='')
-                      input(type='radio')
-                      span.gender-title N&#x1EEF;
-                    label.gender-lable(for='')
-                      input(type='radio')
-                      span.gender-title Kh&aacute;c
-                .form-submit C&#x1EAD;p nh&#x1EAD;t
+                  .form-input_lable Địa chỉ
+                  input.form-input_input(type='text',name='address', value=`${user.info.address}`)
+                button(type="submit").form-submit Cập Nhật
               .body-items-emty
   script(src="/js/shop/account.js") 

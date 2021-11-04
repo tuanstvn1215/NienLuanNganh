@@ -71,7 +71,7 @@ block content
             .dt-item-img
               a(href=`product/show?id=${starproductsheader[0].id}`)
                 span.dt-img
-                  img(src=starproductsheader[0].img[0], alt=starproductsheader[0].name)
+                  img(height='400px', src=starproductsheader[0].img[0], alt=starproductsheader[0].name)
               .dt-info
                 div
                   a.dt-name(href=`product/show?id=${starproductsheader[0].id}`)
@@ -103,7 +103,7 @@ block content
       .list1
         .headdt-lable
           h3 #{starproduct.category.name}
-          a.full-view(style='text-decoration: none', href='#') Xem t&#x1EA5;t c&#x1EA3;
+          a.full-view(style='text-decoration: none', href=`/product?category=${starproduct.category.id}`) Xem t&#x1EA5;t c&#x1EA3;
         .list1-item
           each item in starproduct.tempproducts
             .col-6.col-lg-3

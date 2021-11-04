@@ -7,13 +7,17 @@ class IndexController extends Controller {
     }
 
     getIndex = async (req, res) => {
+        let default_category = await ProductCategoryModel.find({ status: 1 })
+        let default_category_id = default_category[0].id
+        if (req.query.category) default_category_id = req.query.category
         const starproductsheader = await ProductModel.find({
-            category: req.query.category,
+            category: default_category_id,
             status: 1,
         })
             .sort({ price: -1 })
             .limit(5)
 
+        console.log(starproductsheader)
         const starproducts = []
         const productCategory = await ProductCategoryModel.find({ status: 1 })
         for (let index = 0; index < productCategory.length; index++) {
@@ -25,7 +29,7 @@ class IndexController extends Controller {
 
             starproducts.push({ category, tempproducts })
         }
-        console.log(starproducts)
+
         res.render('shop/index', {
             productCategory: productCategory,
             starproductsheader: starproductsheader,

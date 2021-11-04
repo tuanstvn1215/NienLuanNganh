@@ -52,3 +52,7 @@ window.fbAsyncInit = function () {
     js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js'
     fjs.parentNode.insertBefore(js, fjs)
 })(document, 'script', 'facebook-jssdk')
+document.getElementById('search_btn').addEventListener('click', () => {
+    const search_value = document.getElementById('search_input').value
+    window.location = `/product?name=${search_value}`
+})

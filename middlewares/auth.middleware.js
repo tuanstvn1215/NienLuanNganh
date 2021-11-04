@@ -76,3 +76,28 @@ module.exports.requireAuth = async (req, res, next) => {
         return
     }
 }
+module.exports.requireAuthredirect = async (req, res, next) => {
+    // kiểm tra có signed Cookies hay không
+    //nếu không có signed Cookies thì trả về thông báo đăng nhập và code
+    if (!req.signedCookies._id) {
+        res.redirect('/')
+        return
+    }
+    // nếu có signed Cookies thì tìm thông tin người dùng và trả về dữ liệu thông tin người dùng
+    else {
+        try {
+            user = {
+                account: await AccountModel.findById(req.signedCookies._id),
+                info: await UserModel.findOne({
+                    account: req.signedCookies._id,
+                }),
+            }
+            res.locals.user = user
+        } catch {
+            res.redirect('/')
+            return
+        }
+        next()
+        return
+    }
+}
