@@ -302,3 +302,113 @@
     padding-right: 15px; /* maximum width of scrollbar */
     overflow-y: scroll;
 }
+@media screen and (max-width: 600px) {
+    .product-heading {
+        display: none;
+    }
+    .back-card {
+        margin-right: 120px;
+        padding-left: 10px;
+    }
+    .product-title {
+        line-height: 35px;
+        background-color: white;
+        margin-bottom: 0px;
+        box-shadow: 0px 2px #7b7878;
+        position: fixed;
+        width: 100%;
+        z-index: 1;
+    }
+    .shopping-cart {
+        max-width: 375px;
+        padding-left: 0px;
+        padding-right: 0px;
+        max-height: 872px;
+        height: 872px;
+    }
+    .main-product-cart {
+        width: 100%;
+        max-height: 727px;
+    }
+    .wrap-inner-cart {
+        max-height: 700px;
+    }
+    .cart {
+        flex-direction: column;
+        max-height: 740px;
+        padding: 0;
+    }
+    .cart-inner {
+        max-height: 735px;
+        max-width: 100%;
+        height: 735px;
+        overflow: scroll;
+    }
+    .content-cart {
+        margin-top: 15px;
+    }
+    .seller-group {
+        display: none;
+    }
+    .item-product-cart {
+        padding: 0px 10px 5px;
+        margin: 1px 0px 0px;
+    }
+    .product-cart-item-1 {
+        max-width: 375px;
+    }
+    .product-cart-item-2 {
+        max-width: 170px;
+    }
+    .real-price {
+        font-size: 21px;
+    }
+    .discout-price {
+        font-size: 14px;
+    }
+    .product-cart-item-4 {
+        display: none;
+    }
+    .product-cart-item-5 {
+        margin-left: 25px;
+    }
+    .img-checkbox {
+        width: 20px;
+        margin-left: 7px;
+    }
+    .intended-content {
+        display: flex;
+        align-items: center;
+        max-height: 100%;
+        padding-top: 33px;
+    }
+    .cart-total-price {
+        max-width: 375px;
+        width: 100%;
+        display: block;
+        height: 100px;
+    }
+    .total-price-item {
+        display: none;
+    }
+    .price-tt {
+        padding: 5px 20px;
+        align-items: center;
+        height: 50px;
+    }
+    .cart-submit-button {
+        margin-top: 0px;
+    }
+    .total-inner {
+        margin-top: 5px;
+        margin-bottom: 0px;
+    }
+    .product-scroller {
+        height: 1500px;
+        overflow-y: hidden;
+    }
+    .product-content {
+        height: 100%;
+        overflow-y: scroll;
+    }
+}

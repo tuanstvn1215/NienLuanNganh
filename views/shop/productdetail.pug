@@ -17,8 +17,10 @@ block content
           .product-dtl
             .product-info
               .product-name #{product.name}
+              input(type="hidden" id = 'product_id' value=`${product.id}`)
               .reviews-counter
                 .brand-name
+  
                   | Loại sản phẩm: 
                   a(href=`/product?category=${product.category.id}`) #{product.category.name}
                   span.columm
@@ -48,8 +50,8 @@ block content
               //-   .qtyminus -
               //-   input.qty(type='text', name='quantity', value='1')
               //-   .qtyplus +
-              a.round-white-btn(href='#') Mua Ngay
-              a.round-black-btn(href='#') Th&ecirc;m v&agrave;o gi&#x1ECF; h&agrave;ng
+              span.round-white-btn#buynow_btn Mua Ngay
+              span.round-black-btn#addtocart_btn Thêm v&agrave;o gi&#x1ECF; h&agrave;ng
       .product-info-tabs
         ul#myTab.nav.nav-tabs(role='tablist')
           li.nav-item
@@ -58,7 +60,7 @@ block content
             a#review-tab.nav-link(data-toggle='tab', href='#review', role='tab', aria-controls='review', aria-selected='false') Reviews (0)
         #myTabContent.tab-content
           #description.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='description-tab')
-            | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            | #{product.description}
           #review.tab-pane.fade(role='tabpanel', aria-labelledby='review-tab')
             .review-heading REVIEWS
             p.mb-20 There are no reviews yet.

@@ -61,5 +61,10 @@ class productController extends Controller {
             .populate('provider')
         res.render('shop/productdetail', { product: product })
     }
+    findOne = async (req, res) => {
+        let id = req.query.id
+        let product = await ProductModel.findById(id)
+        res.send(product)
+    }
 }
 module.exports = new productController()

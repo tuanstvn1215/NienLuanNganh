@@ -1,7 +1,9 @@
 const Controller = require('../../core/controller')
 const BillModel = require('../../models/bill.model')
+
 const paypalSDK = require('@paypal/checkout-server-sdk')
-const { response } = require('express')
+
+const ProductModel = require('../../models/product.model')
 
 class CardController extends Controller {
     constructor() {
@@ -23,8 +25,28 @@ class CardController extends Controller {
         res.render('shop/cart', { user: res.locals.user })
     }
     checkout = async (req, res) => {
+        console.log(req.body)
+        let value = 0
+        let user = res.locals.user
+        let items = req.body.items
+        let products = []
+        for (let index = 0; index < items.length; index++) {
+            const element = items[index]
+            let product = await ProductModel.findById(element.id)
+            value += parseInt(product.price) * parseInt(element.quantity)
+            products.push({
+                product: product.id,
+                quantity: parseInt(element.quantity),
+            })
+        }
+        console.log(value)
         const bill = (
-            await BillModel.insertMany({ value: 1000.12, status: 0 })
+            await BillModel.insertMany({
+                value: value,
+                status: 0,
+                user: user.info.id,
+                products: products,
+            })
         )[0]
         console.log(res.locals)
         const successUrl =
@@ -32,14 +54,15 @@ class CardController extends Controller {
                 ? req.headers['x-forwarded-proto'] + '://'
                 : 'http://') +
             req.headers.host +
-            '/cart/success/' +
+            '/cart/success?' +
             bill.id
         const cancleUrl =
             (req.headers['x-forwarded-proto']
                 ? req.headers['x-forwarded-proto'] + '://'
                 : 'http://') +
             req.headers.host +
-            '/cart'
+            '/cart/cancel?id=' +
+            bill.id
         //   tạo request đến paypal
         let request = new paypalSDK.orders.OrdersCreateRequest()
         request.requestBody({
@@ -55,7 +78,8 @@ class CardController extends Controller {
                 {
                     amount: {
                         currency_code: 'USD',
-                        value: '' + bill.value,
+                        value:
+                            '' + Math.round((bill.value / 22700) * 100) / 100,
                     },
                 },
             ],
@@ -72,7 +96,7 @@ class CardController extends Controller {
         response.result.links.forEach((item, index) => {
             if (item.rel == 'approve') {
                 console.log(item.href)
-                res.redirect(item.href)
+                res.send({ code: 200, link: item.href })
                 return
             }
         })
@@ -96,6 +120,11 @@ class CardController extends Controller {
             billid: req.params.billid,
             status: response.result.status,
         })
+    }
+    cancel = async (req, res) => {
+        let billId = req.query.id
+        let bill = await BillModel.findByIdAndDelete(billId)
+        res.redirect('/cart')
     }
 }
 module.exports = new CardController()

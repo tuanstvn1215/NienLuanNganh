@@ -1,30 +1,15 @@
-localStorage.removeItem('Cart')
-var test2 = {
-    img: 'https://upanh.cf/kuha9aoc7o.jpg',
-    name: 'nước rửa tay',
-    price: 5500,
-    discount: 10,
-}
-var test3 = {
-    img: 'https://upanh.cf/kuha9aoc7o.jpg',
-    name: 'nước rửa chân',
-    price: 6000,
-    discount: 10,
-}
-addtoCart(test2, '1')
-addtoCart(test3, '2')
-addtoCart(test3, '3')
-addtoCart(test3, '4')
-addtoCart(test3, '41')
-addtoCart(test3, '42')
-addtoCart(test3, '43')
-addtoCart(test2, '12')
-addtoCart(test3, '23')
-addtoCart(test3, '34')
-addtoCart(test3, '45')
-addtoCart(test3, '416')
-addtoCart(test3, '427')
-addtoCart(test3, '438')
+// var test2 = {
+//     img: 'https://upanh.cf/kuha9aoc7o.jpg',
+//     name: 'nước rửa tay',
+//     price: 5500,
+//     discount: 10,
+// }
+// var test3 = {
+//     img: 'https://upanh.cf/kuha9aoc7o.jpg',
+//     name: 'nước rửa chân',
+//     price: 6000,
+//     discount: 10,
+// }
 refreshCard()
 function qty_inputChange(event, id) {
     let quantity = parseInt(event.target.value)
@@ -130,7 +115,7 @@ async function refreshCard() {
                                                 </div>
                                                 <div class="img-product">
                                                     <a href="#" class="intended-img">
-                                                        <img src="${
+                                                        <img height='50px' src="${
                                                             item.obj.img
                                                         }"
                                                             alt="Nước Rửa Tay Lifebuoy 500g Sữa Dưỡng ẩm Giúp Chăm Sóc Và Bảo Vệ Khỏi 99.9% Vi Khuẩn Trên Tay">
@@ -194,3 +179,23 @@ async function refreshCard() {
     document.getElementById('prices-value-final').innerText =
         prices - discounts + 'đ'
 }
+document
+    .getElementById('checkout_form')
+    .addEventListener('submit', async (event) => {
+        event.preventDefault()
+        console.log(event.target)
+        fetch(`/cart/checkout`, {
+            method: 'post',
+            headers: {
+                'content-type': 'application/json',
+                Cookie: document.cookie,
+            },
+            body: JSON.stringify({
+                items: JSON.parse(localStorage.getItem('Cart')),
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if ((data.code = 200)) window.location.replace(data.link)
+            })
+    })

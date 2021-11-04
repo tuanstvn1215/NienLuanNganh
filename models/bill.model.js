@@ -4,7 +4,17 @@ const Schema = new mongoose.Schema({
     value: { type: mongoose.SchemaTypes.Decimal128, required: true },
     status: { type: Number, required: true },
     user: { type: mongoose.SchemaTypes.ObjectId, ref: 'User' },
-    address: { type: mongoose.SchemaTypes.ObjectId, ref: 'Address' },
+    product: [
+        {
+            product: {
+                type: mongoose.SchemaTypes.ObjectId,
+                ref: 'Product',
+            },
+            quantity: {
+                type: Number,
+            },
+        },
+    ],
 })
 const BillModel = mongoose.model('Bill', Schema, 'bills')
 module.exports = BillModel
