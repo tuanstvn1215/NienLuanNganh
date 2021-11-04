@@ -46,7 +46,7 @@ class AccountController extends Controller {
                 Orders.push(e)
             }
         }
-        console.log(Orders)
+
         res.render('shop/accountOrder', { bills: bills, Orders: Orders })
     }
 }

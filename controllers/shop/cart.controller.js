@@ -39,7 +39,7 @@ class CardController extends Controller {
                 quantity: parseInt(element.quantity),
             })
         }
-        console.log(value)
+
         const bill = (
             await BillModel.insertMany({
                 value: value,
