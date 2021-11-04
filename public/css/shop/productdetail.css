@@ -84,7 +84,9 @@
     justify-content: center;
     padding-top: 10px;
 }
-
+.brand-name a {
+    color: black;
+}
 .brand-name a:hover {
     text-decoration: none;
     color: #0f2895;

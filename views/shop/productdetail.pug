@@ -8,28 +8,22 @@ block content
         .col-md-6
           #slider.product-slider
             .item
-              img#product-img(src='https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80' style='width:100%')
+              img#product-img(src=`${product.img[0]}` style='width:100%')
           .product-thumb
-            .item
-              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
-            .item
-              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
-            .item
-              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
-            .item
-              img(src='https://i.ytimg.com/vi/PJ_zomNMK_s/maxresdefault.jpg')
-
+            each img in product.img
+              .item
+                img.product-img-item(src=`${img}`)
         .col-md-6
           .product-dtl
             .product-info
-              .product-name Variable Product
+              .product-name #{product.name}
               .reviews-counter
                 .brand-name
-                  | Th&#x1B0;&#x1A1;ng hi&#x1EC7;u:
-                  a(href='#') aaaaa
+                  | Loại sản phẩm: 
+                  a(href=`/product?category=${product.category.id}`) #{product.category.name}
                   span.columm
                   |  NSX: 
-                  a(href='#') aaaaaaaaaaa
+                  a(href=`/product?provider=${product.provider.id}`) #{product.provider.name}
                 .rate
                   input#star5(type='radio', name='rate', value='5', checked='')
                   label(for='star5', title='text') 5 stars
@@ -42,17 +36,18 @@ block content
                   input#star1(type='radio', name='rate', value='1')
                   label(for='star1', title='text') 1 star
               .product-price-discount
-                span $39.00
-                span.line-through $29.00
+                span #{product.price} 
+                span  vnd
+                //- span.line-through $29.00
             .break-row
               p
-                | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa,adsssssssssssssssssssss,dsaaaaaaaaaaaa/asddddddddddd
+                | #{product.description}
             .product-count
-              label(for='size') Quantity
-              form.display-flex(action='#')
-                .qtyminus -
-                input.qty(type='text', name='quantity', value='1')
-                .qtyplus +
+              //- label(for='size') Quantity
+              //- form.display-flex(action='#')
+              //-   .qtyminus -
+              //-   input.qty(type='text', name='quantity', value='1')
+              //-   .qtyplus +
               a.round-white-btn(href='#') Mua Ngay
               a.round-black-btn(href='#') Th&ecirc;m v&agrave;o gi&#x1ECF; h&agrave;ng
       .product-info-tabs

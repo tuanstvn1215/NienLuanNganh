@@ -13,12 +13,9 @@ class productController extends Controller {
         let page = 0
         if (req.query.page) page = parseInt(req.query.page)
         let name = req.query.name
-        let searchqueryfinal
-        let searchquery
-        if (req.query.name) {
-            searchqueryfinal = { name: new RegExp(name) }
-            searchquery = { name: name }
-        }
+        let searchqueryfinal = { name: new RegExp(name) }
+        let searchquery = { name: name }
+
         if (req.query.category) {
             searchqueryfinal.category = req.query.category
             searchquery.category = req.query.category
@@ -42,10 +39,12 @@ class productController extends Controller {
                 price: searchquery.price,
             })
         else product = await ProductModel.find(searchqueryfinal)
-        if ((product = product.filter((value, index, arr) => {})))
-            product = product.filter((value, index, arr) => {
-                return (index >= page * 12) & (index < (page + 1) * 12)
-            })
+        // product = product.filter((value, index, arr) => {
+        //     return (value.price >= price[0]) & (value.price <= price[1])
+        // })
+        product = product.filter((value, index, arr) => {
+            return (index >= page * 12) & (index < (page + 1) * 12)
+        })
         console.log(productCategory)
         res.render('shop/product', {
             user: res.locals.user,
@@ -57,7 +56,10 @@ class productController extends Controller {
         })
     }
     show = async (req, res) => {
-        res.render('shop/productdetail')
+        let product = await ProductModel.findById(req.query.id)
+            .populate('category')
+            .populate('provider')
+        res.render('shop/productdetail', { product: product })
     }
 }
 module.exports = new productController()

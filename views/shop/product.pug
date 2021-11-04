@@ -5,7 +5,7 @@ block content
   .container
   .row 
     .col-3.category
-      form(action="/product", method="get")  
+      form#filter-form(action="/product", method="get")  
         .category-filter
           .category-filter-block
             .category-filter-block-name Loại sản phẩm
@@ -13,14 +13,14 @@ block content
               .category-list-item
                   .category-list-inner
                     .column.category-list-brand-1
-                      input.checkbox-item(type='radio' id='search-cateogry' name='search-cateogry' value = '')
+                      input.checkbox-item(type='radio' id='search-cateogry' name='search_cateogry' value = '' checked)
                       label(for='') Tất Cả
                       br
               each item in productCategory
                 .category-list-item
                   .category-list-inner
                     .column.category-list-brand-1
-                      input.checkbox-item(type='radio' id='search-cateogry' name='search-cateogry')
+                      input.checkbox-item(type='radio' id='search-cateogry' name='search_cateogry'  value=`${item.id}`)
                       label(for='') #{item.name}
                       br
           .category-filter-block
@@ -29,41 +29,42 @@ block content
               .category-list-item
                   .category-list-inner
                     .column.category-list-brand-1
-                      input.checkbox-item(type='radio' id='search-cateogry' name='search-cateogry' value = '')
+                      input.checkbox-item(type='radio' id='search-provider' name='search_provider' value = '' checked )
                       label(for='') Tất Cả
                       br
               each item in productProvider
                 .category-list-item
                   .category-list-inner
                     .column.category-list-brand-1
-                      input.checkbox-item(type='radio' id='search-cateogry' name='search-cateogry')
+                      input.checkbox-item(type='radio' id='search-provider' name='search_provider'  value=`${item.id}`)
                       label(for='') #{item.name}
                       br
+          //- .category-filter-block
+          //-   .category-filter-block-name M&#x1EE9;c gi&aacute;
+          //-   .row.category-list
+          //-     .category-list-item
+          //-       .category-list-inner
+          //-         .category-list-price-1
+          //-           input.checkbox-item(type='radio')
+          //-           label(for='') T&#x1EA5;t c&#x1EA3;
+          //-           br
+          //-           input.checkbox-item(type='radio')
+          //-           label(for='') D&#x1B0;&#x1EDB;i 2 tri&#x1EC7;u
+          //-           br
+          //-           input.checkbox-item(type='radio')
+          //-           label(for='') T&#x1EEB; 2 - 4 tri&#x1EC7;u
+          //-           br
+          //-           input.checkbox-item(type='radio')
+          //-           label(for='') T&#x1EEB; 4 - 7 tri&#x1EC7;u
+          //-           br
+          //-           input.checkbox-item(type='checkbox')
+          //-           label(for='') T&#x1EEB; 7 - 13 tri&#x1EC7;u
+          //-           br
+          //-           input.checkbox-item(type='checkbox')
+          //-           label(for='') Trên 13 triệu
+          //-           br
           .category-filter-block
-            .category-filter-block-name M&#x1EE9;c gi&aacute;
-            .row.category-list
-              .category-list-item
-                .category-list-inner
-                  .category-list-price-1
-                    input.checkbox-item(type='radio')
-                    label(for='') T&#x1EA5;t c&#x1EA3;
-                    br
-                    input.checkbox-item(type='radio')
-                    label(for='') D&#x1B0;&#x1EDB;i 2 tri&#x1EC7;u
-                    br
-                    input.checkbox-item(type='radio')
-                    label(for='') T&#x1EEB; 2 - 4 tri&#x1EC7;u
-                    br
-                    input.checkbox-item(type='radio')
-                    label(for='') T&#x1EEB; 4 - 7 tri&#x1EC7;u
-                    br
-                    input.checkbox-item(type='checkbox')
-                    label(for='') T&#x1EEB; 7 - 13 tri&#x1EC7;u
-                    br
-                    input.checkbox-item(type='checkbox')
-                    label(for='') Trên 13 triệu
-                    br
-
+            span.btn.btn-success#btn-fillter(type="submit") Tìm Kiếm
     .col-9
       .product-tab
         .product-tab-header-container
@@ -108,4 +109,4 @@ block content
             span.btn.btn-success Trang Sau
 
 
-  script(src="/js/shop/Sign-in_up.js" type='module') 
+  script(src="/js/shop/product.js" type='module') 
