@@ -179,7 +179,7 @@ class ProductController extends Controller {
     }
     detele = async (req, res) => {
         let id = req.query.id
-        await ProductModel.findByIdAndUpdate(id,{status=0})
+        await ProductModel.findByIdAndUpdate(id, { $set: { status: 0 } })
         try {
         } catch (error) {
             res.json({
