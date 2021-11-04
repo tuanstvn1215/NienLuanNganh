@@ -246,6 +246,7 @@
 
 .round-white-btn:hover,
 .round-white-btn:focus {
+    cursor: pointer;
     background: #212529;
     color: #fff;
     text-decoration: none;
@@ -253,6 +254,7 @@
 
 .round-black-btn:hover,
 .round-black-btn:focus {
+    cursor: pointer;
     background: #fff;
     color: #212529;
     text-decoration: none;

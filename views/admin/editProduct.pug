@@ -12,23 +12,30 @@ block content
         .col-md-12
           .tile
             h3.tile-title T&#x1EA1;o m&#x1EDB;i s&#x1EA3;n ph&#x1EA9;m
-            form(action='/admin/product/create', method='post' enctype='multipart/form-data')
+            form(action=`/admin/product/edit?id=${product.id}`, method='post' enctype='multipart/form-data')
               .row
                 .col-md-4
                   label.control-label T&ecirc;n s&#x1EA3;n ph&#x1EA9;m 
-                  input.form-control(name='name', type='text', placeholder='')
+                  input.form-control(name='name', type='text', placeholder='' value=`${product.name}`)
                                 
                 .col-md-4
                   label.control-label T&igrave;nh tr&#x1EA1;ng
                   select.form-control(name='status')
                     option -- Ch&#x1ECD;n t&igrave;nh tr&#x1EA1;ng --
-                    option(value=1) C&ograve;n h&agrave;ng
-                    option(value=0) H&#x1EBF;t h&agrave;ng
+                    if(product.status==1)
+                      option(value=1 selected="selected") C&ograve;n h&agrave;ng
+                      option(value=0) H&#x1EBF;t h&agrave;ng
+                    if(product.status==0)
+                      option(value=1) C&ograve;n h&agrave;ng
+                      option(value=0 selected="selected") H&#x1EBF;t h&agrave;ng
                 .col-md-4
                   label.control-label Lo&#x1EA1;i s&#x1EA3;n ph&#x1EA9;m
                   select.form-control(name='category' id='selected-category')
                     each item in product_category
-                      option(value=`${item.id}` ) #{item.name} 
+                      if(item.id==product.category.id)
+                        option(value=`${item.id}` selected="selected" ) #{item.name} 
+                      else
+                        option(value=`${item.id}`  ) #{item.name} 
                   br
                   span.btn.btn-success#btn-add-category Thêm 
                   span.btn.btn-warning#btn-change-category Sửa
@@ -37,19 +44,26 @@ block content
                   label.control-label Nh&agrave; Cung C&#x1EA5;p
                   select.form-control(name='provider' id='selected-provider')
                     each item in product_provider
-                      option(value=`${item.id}` ) #{item.name} 
+                      if(item.id==product.provider.id)
+                        option(value=`${item.id}` selected="selected" ) #{item.name} 
+                      else
+                        option(value=`${item.id}`  ) #{item.name} 
                   br
                   span.btn.btn-success#btn-add-provider Thêm
                   span.btn.btn-warning#btn-change-provider Sửa
                   span.btn.btn-danger#btn-delete-provider Xóa
                 .col-md-4
                   label.control-label Gi&aacute; B&aacute;n
-                  input.form-control(name='price', type='text')
+                  input.form-control(name='price', type='text' value = `${product.price}`)
               br        
               .picture
                 .control-label
                   h3 &#x1EA2;nh s&#x1EA3;n ph&#x1EA9;m
+                  input(type="checkbox" name='upanh' id='upanh' )
+                  label(for='upanh') Sửa ảnh 
+                  
                 label#avatar_lb(for='avatar')
+                  
                   span
                     | Ch&#x1ECD;n &#x1EA3;nh &dstrok;&#x1EC3; up 
                     i.fas.fa-cloud-upload-alt
@@ -60,10 +74,10 @@ block content
                 .col-md-12
                   .form-group
                     label.control-label M&ocirc; t&#x1EA3; s&#x1EA3;n ph&#x1EA9;m
-                    textarea.form-control-des(name='Description', type='text', id='', cols='30', rows='10')
+                    textarea.form-control-des(name='Description', type='text', id='', cols='30', rows='10' value=`${product.description}`)
               br
               .buton
                 button.btn.btn-outline-success(type='submit') L&#x1B0;u l&#x1EA1;i
-                a.btn.btn-outline-danger(href='/admin/prodcut') H&#x1EE7;y b&#x1ECF;
+                a.btn.btn-outline-danger(href='/admin/product') H&#x1EE7;y b&#x1ECF;
   script(type='module',src="/js/admin/add_product.js") 
   

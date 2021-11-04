@@ -15,9 +15,14 @@ class ProductController extends Controller {
     }
     show = async (req, res) => {
         const product_category = await ProductCategoryModel.find({ status: 1 })
-        const products = await ProductModel.find()
+        const products = await ProductModel.find({ status: { $ne: 0 } })
             .sort({ add_at: -1 })
+            .populate({ path: 'provider', model: 'ProductProvider' })
+            .populate({ path: 'category', model: 'ProductCategory' })
             .limit(30)
+
+            .exec()
+        console.log(products)
         res.render('admin/product', {
             product_category: product_category,
             products: products,
@@ -69,6 +74,7 @@ class ProductController extends Controller {
                 category: category,
                 price: price,
                 img: img,
+                description: description,
             }).catch((err) => {
                 res.json({
                     code: 403,
@@ -82,6 +88,71 @@ class ProductController extends Controller {
                 message: 'lưu thất bại vì lỗi: ' + ex.message,
             })
         }
+    }
+    edit = async (req, res) => {
+        const product_category = await ProductCategoryModel.find({ status: 1 })
+        const product_provider = await ProductProviderModel.find({ status: 1 })
+        const product_id = req.query.id
+        const product = await ProductModel.findById(product_id)
+            .populate({ path: 'provider', model: 'ProductProvider' })
+            .populate({ path: 'category', model: 'ProductCategory' })
+            .exec()
+        res.render('admin/editProduct', {
+            product_category: product_category,
+            product_provider: product_provider,
+            ref: req.originalUrl,
+            product: product,
+        })
+    }
+    update = async (req, res) => {
+        id = req
+        let name = req.body.name
+        let status = req.body.status
+        let provider = req.body.provider
+        let category = req.body.category
+        let price = req.body.price
+        let description = req.body.description
+        let upanh = req.body.upanh
+        let img = []
+        try {
+            if (upanh) {
+                const imageFile = [].concat(req.files.img)
+                const paths = imageFile.map((item) => {
+                    return item.path
+                })
+                console.log(paths)
+                await Promise.all(
+                    paths.map(async (element) => {
+                        await cloudinary.uploader
+                            .upload(element)
+                            .then(function (image) {
+                                console.log(
+                                    '** file uploaded to Cloudinary service'
+                                )
+                                img.push(image.url)
+                            })
+                    })
+                )
+                await ProductModel.findByIdAndUpdate({
+                    $set: {
+                        name: name,
+                        status: status,
+                        provider: provider,
+                        category: category,
+                        price: price,
+                        img: img,
+                        description: description,
+                    },
+                }).catch((err) => {
+                    res.json({
+                        code: 403,
+                        message: 'lưu thất bại vì lỗi: ' + err.message,
+                    })
+                })
+                res.redirect('/admin/product')
+            } else {
+            }
+        } catch (error) {}
     }
     detele = async (req, res) => {
         try {
