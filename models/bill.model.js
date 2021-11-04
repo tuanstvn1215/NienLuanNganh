@@ -4,7 +4,7 @@ const Schema = new mongoose.Schema({
     value: { type: mongoose.SchemaTypes.Decimal128, required: true },
     status: { type: Number, required: true },
     user: { type: mongoose.SchemaTypes.ObjectId, ref: 'User' },
-    product: [
+    products: [
         {
             product: {
                 type: mongoose.SchemaTypes.ObjectId,

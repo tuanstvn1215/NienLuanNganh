@@ -116,10 +116,7 @@ class CardController extends Controller {
                 set: { status: 1 },
             })
 
-        res.render('shop/resultCheckout', {
-            billid: req.params.billid,
-            status: response.result.status,
-        })
+        res.render('shop/success', {})
     }
     cancel = async (req, res) => {
         let billId = req.query.id
