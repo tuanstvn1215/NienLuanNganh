@@ -66,8 +66,8 @@ block content
                                 span.order-final-price #{Order.product.price * Order.quantity}
                               .items_content.order-content-items
                                 if(bill.status==2)
-                                  .order-status-items.status-succes  &Dstrok;&atilde; giao
+                                  .order-status-items.status-succes  Đã giao hàng
                                 if(bill.status==1)
-                                  .order-status-items.status-cancel  Chưa giao
+                                  .order-status-items.status-cancel  Đang giao hàng
                                 if(bill.status==0)
                                   .order-status-items.status-cancel  Chưa xử lý

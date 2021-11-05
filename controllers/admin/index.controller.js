@@ -38,7 +38,6 @@ class IndexControllder extends Controller {
                 .count()
                 .exec()
         }
-        console.log(chart_count_input)
         res.render('admin/index', {
             chart_count_input: JSON.stringify(chart_count_input),
             chart_value_input: JSON.stringify(chart_value_input),

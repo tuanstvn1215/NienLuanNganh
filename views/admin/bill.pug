@@ -9,35 +9,30 @@ block content
           #time.ontime
       // <div class="row">
       .tile
-        h3.tile-title Danh Sách Hàng Hóa
-        a(href='/admin/product/create')
-          button.btn.btn-primary.add--order(type='button')
-            | Thêm Hàng Hóa
+        h3.tile-title Danh Sách Hóa Đơn
         table.table.table-bordered.table-hover
           thead.thead-light
             tr
-           
               th(scope='col') ID
-              th(scope='col') T&ecirc;n nh&agrave; s&#x1EA3;n xu&#x1EA5;t
-              th(scope='col') T&ecirc;n s&#x1EA3;n ph&#x1EA9;m
-              th(scope='col') Lo&#x1EA1;i s&#x1EA3;n ph&#x1EA9;m
+              th(scope='col') Giá trị hóa đơn
+              th(scope='col') Ngày lập hóa đơn
               th(scope='col') Trạng thái
               th(scope='col') T&iacute;nh n&abreve;ng
           tbody
-            each item in products
+            each item in bills
               tr            
                 td #{item.id}
-                td #{item.provider.name}
-                td #{item.name}
-                td #{item.category.name}
+                td #{item.value}
+                td #{item.date}
+
+                if(item.status==0)
+                  td Chưa xử lý
                 if(item.status==1)
-                  td Còn hàng
+                  td Đang giao hàng
                 if(item.status==2)
-                  td Hết hàng
+                  td Đã giao hàng
                 td
-                  span(class='btn-delete-product' data-id=`${item.id}` href=`/admin/product/delete?id=${item.id}`)
-                    i(data-id=`${item.id}`).fas.fa-trash-alt.icon--delete.backgrd
-                  a(href=`/admin/product/edit?id=${item.id}`)
+                  a(href=`/admin/bill/show?id=${item.id}`)
                     i.fas.fa-edit.backgrds
       // </div>
   script(src="/js/admin/product.js") 
