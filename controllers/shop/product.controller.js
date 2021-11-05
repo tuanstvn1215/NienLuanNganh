@@ -13,7 +13,11 @@ class productController extends Controller {
         let page = 0
         if (req.query.page) page = parseInt(req.query.page)
         let name = req.query.name
-        let searchqueryfinal = { name: new RegExp(name) }
+        let searchqueryfinal = {
+            name: new RegExp(name),
+
+            status: { $ne: 0 },
+        }
         let searchquery = { name: name }
 
         if (req.query.category) {
