@@ -71,8 +71,9 @@ class productController extends Controller {
                 const element = all_star_value[index]
                 stars_value += element.value
             }
-            stars_value / all_star_value.length
+            stars_value = Math.round(stars_value / all_star_value.length)
         }
+
         console.log(stars_value)
 
         let product = await ProductModel.findById(req.query.id)
