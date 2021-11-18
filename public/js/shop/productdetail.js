@@ -63,3 +63,46 @@ async function product_addtocart() {
         })
 }
 let product = {}
+window.onload = function () {
+    let stars = document.getElementsByName('rate')
+
+    for (let index = 0; index < stars.length; index++) {
+        const element = stars[index]
+        element.addEventListener('click', (e) => {
+            let star_Value = e.target.value
+            let product_id = document.getElementById('product_id').value
+            // document.getElementById(
+            //     'result-rate'
+            // ).innerText = `Bạn vừa đánh giá ${star_Value} sao cho sản phẩm`
+
+            fetch(
+                `/product/rate?product_id=${product_id}&stars=${star_Value}`,
+                {
+                    method: 'post',
+                    headers: {
+                        'content-type': 'application/json',
+                        Cookie: document.cookie,
+                    },
+                }
+            )
+                .then((response) => response.json())
+                .then((data) => {
+                    const modal_manage = document.getElementById('modal-manage')
+                    modal_manage.getElementsByClassName(
+                        'modal-header'
+                    )[0].innerHTML = 'Thông báo'
+                    modal_manage.getElementsByClassName(
+                        'modal-body'
+                    )[0].style.display = 'block'
+                    modal_manage.getElementsByClassName(
+                        'modal-body'
+                    )[0].innerHTML = `<div>${data.message}</div>`
+                    modal_manage.getElementsByClassName(
+                        'modal-footer'
+                    )[0].innerHTML = `                                      
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>`
+                    $('#modal-manage').modal('show')
+                })
+        })
+    }
+}

@@ -27,16 +27,14 @@ block content
                   |  NSX: 
                   a(href=`/product?provider=${product.provider.id}`) #{product.provider.name}
                 .rate
-                  input#star5(type='radio', name='rate', value='5', checked='')
-                  label(for='star5', title='text') 5 stars
-                  input#star4(type='radio', name='rate', value='4', checked='')
-                  label(for='star4', title='text') 4 stars
-                  input#star3(type='radio', name='rate', value='3', checked='')
-                  label(for='star3', title='text') 3 stars
-                  input#star2(type='radio', name='rate', value='2')
-                  label(for='star2', title='text') 2 stars
-                  input#star1(type='radio', name='rate', value='1')
-                  label(for='star1', title='text') 1 star
+                  each val in [5, 4, 3, 2, 1]
+                    if stars_value==val
+                      input(id=`star${val}` type='radio', name='rate', value=val checked)
+                      label(for=`star${val}`, title='text') #{val} stars
+                    else
+                      input(id=`star${val}` type='radio', name='rate', value=val )
+                      label(for=`star${val}`, title='text') #{val} stars
+              .brand-name#result-rate 
               .product-price-discount
                 span #{product.price} 
                 span  vnd
@@ -68,17 +66,6 @@ block content
               .form-group
                 label Your rating
                 .reviews-counter
-                  .rate
-                    input#star5(type='radio', name='rate', value='5')
-                    label(for='star5', title='text') 5 stars
-                    input#star4(type='radio', name='rate', value='4')
-                    label(for='star4', title='text') 4 stars
-                    input#star3(type='radio', name='rate', value='3')
-                    label(for='star3', title='text') 3 stars
-                    input#star2(type='radio', name='rate', value='2')
-                    label(for='star2', title='text') 2 stars
-                    input#star1(type='radio', name='rate', value='1')
-                    label(for='star1', title='text') 1 star
               .form-group
                 label Your message
                 textarea.form-control(rows='10')
