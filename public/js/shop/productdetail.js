@@ -58,8 +58,19 @@ async function product_addtocart() {
                 },
                 product_id
             )
-
-            console.log(data)
+            const modal_manage = document.getElementById('modal-manage')
+            modal_manage.getElementsByClassName('modal-header')[0].innerHTML =
+                'Thông báo'
+            modal_manage.getElementsByClassName('modal-body')[0].style.display =
+                'block'
+            modal_manage.getElementsByClassName(
+                'modal-body'
+            )[0].innerHTML = `<div>Thêm thành công vào giỏ hàng</div>`
+            modal_manage.getElementsByClassName(
+                'modal-footer'
+            )[0].innerHTML = `                                      
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>`
+            $('#modal-manage').modal('show')
         })
 }
 let product = {}

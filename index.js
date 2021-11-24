@@ -7,6 +7,7 @@ const multipart = require('connect-multiparty')
 const shopRouter = require('./routes/shop.route')
 const adminRouter = require('./routes/admin.route')
 const { requireadmin } = require('./middlewares/auth.middleware')
+const ProductModel = require('./models/product.model')
 const multipartMiddleware = multipart()
 app.set('view engine', 'pug')
 app.set('views', './views')
@@ -23,6 +24,7 @@ app.use(
 app.use(multipartMiddleware)
 
 app.use(express.static('public'))
+
 app.use('/admin', requireadmin, adminRouter)
 app.use('/', shopRouter)
 

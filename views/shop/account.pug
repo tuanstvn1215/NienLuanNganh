@@ -42,16 +42,16 @@ block content
               form(method='POST', action=`/account/update?id=${user.info.id}`).body-items
                 .form-group.body-items-inner
                   .form-input_lable H&#x1ECD; v&agrave; t&ecirc;n
-                  input.form-input_input(type='text',name='name', value=`${user.info.name}`)
+                  input.form-input_input(type='text',name='name', value=`${user.info.name||''}`)
                 .body-items-inner
                   .form-input_lable Email
-                  input.form-input_input(type='text',name='email', value=`${user.info.email}`)
+                  input.form-input_input(type='text',name='email', value=`${user.info.email||''}`)
                 .body-items-inner
                   .form-input_lable S&#x1ED1; &dstrok;i&#x1EC7;n tho&#x1EA1;i
-                  input.form-input_input(type='tel',name='number', value=`${user.info.number}`)
+                  input.form-input_input(type='tel',name='number', value=`${user.info.number||''}`)
                 .body-items-inner
                   .form-input_lable Địa chỉ
-                  input.form-input_input(type='text',name='address', value=`${user.info.address}`)
+                  input.form-input_input(type='text',name='address', value=`${user.info.address||''}`)
                 button(type="submit").form-submit Cập Nhật
               .body-items-emty
   script(src="/js/shop/account.js") 

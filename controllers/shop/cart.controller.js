@@ -25,11 +25,38 @@ class CardController extends Controller {
         res.render('shop/cart', { user: res.locals.user })
     }
     checkout = async (req, res) => {
-        console.log(req.body)
         let value = 0
         let user = res.locals.user
         let items = req.body.items
         let products = []
+        let out_of_orders = []
+        let not_enought = []
+        // kiểm tra xem các mặt hàng trên còn hay đã hết
+        for (let index = 0; index < items.length; index++) {
+            const element = items[index]
+            let product = await ProductModel.findById(element.id)
+
+            if (product.status == 2) out_of_orders.push(product)
+        }
+        if (out_of_orders.length > 0) {
+            res.send({ code: 501, out_of_orders: out_of_orders })
+            return
+        }
+        // kiểm tra các mặt hàng có đủ số lượng thanh toán không
+
+        for (let index = 0; index < items.length; index++) {
+            const element = items[index]
+            let product = await ProductModel.findById(element.id)
+            if (parseInt(element.quantity) > parseInt(product.number)) {
+                not_enought.push(product)
+            }
+        }
+
+        if (not_enought.length > 0) {
+            res.send({ code: 502, not_enought: not_enought })
+            return
+        }
+
         for (let index = 0; index < items.length; index++) {
             const element = items[index]
             let product = await ProductModel.findById(element.id)
@@ -48,13 +75,13 @@ class CardController extends Controller {
                 products: products,
             })
         )[0]
-        console.log(res.locals)
+
         const successUrl =
             (req.headers['x-forwarded-proto']
                 ? req.headers['x-forwarded-proto'] + '://'
                 : 'http://') +
             req.headers.host +
-            '/cart/success?' +
+            '/cart/success?billid=' +
             bill.id
         const cancleUrl =
             (req.headers['x-forwarded-proto']
@@ -87,15 +114,12 @@ class CardController extends Controller {
 
         // thực hiện request và lưu vào biến response
         let response = await this.paypalclient.execute(request).catch((ex) => {
-            console.log(ex)
             res.send('xảy ra lỗi')
         })
 
-        console.log(response.result.links)
         // redirect người dùng đến trang thanh toán của paypal
         response.result.links.forEach((item, index) => {
             if (item.rel == 'approve') {
-                console.log(item.href)
                 res.send({ code: 200, link: item.href })
                 return
             }
@@ -112,9 +136,19 @@ class CardController extends Controller {
                 res.send('lỗi rồi đại vương ơi')
             })
         if (response.result.status == 'COMPLETED')
-            bill = await BillModel.findByIdAndUpdate(req.params.billid, {
-                set: { status: 1 },
-            })
+            bill = await BillModel.findById(req.query.billid)
+        await BillModel.findByIdAndUpdate(req.query.billid, {
+            set: { status: 1 },
+        })
+
+        for (let index = 0; index < bill.products.length; index++) {
+            const element = bill.products[index]
+            console.log(
+                await ProductModel.findByIdAndUpdate(element.product, {
+                    $inc: { number: -parseInt(element.quantity) },
+                })
+            )
+        }
 
         res.render('shop/success', {})
     }

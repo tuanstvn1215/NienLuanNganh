@@ -196,6 +196,68 @@ document
         })
             .then((response) => response.json())
             .then((data) => {
-                if ((data.code = 200)) window.location.replace(data.link)
+                if (data.code == 501) {
+                    let out_of_orders_string = ''
+                    for (
+                        let index = 0;
+                        index < data.out_of_orders.length;
+                        index++
+                    ) {
+                        const element = data.out_of_orders[index]
+                        out_of_orders_string += `<li>${element.name}</li>`
+                    }
+                    const modal_manage = document.getElementById('modal-manage')
+                    modal_manage.getElementsByClassName(
+                        'modal-header'
+                    )[0].innerHTML = 'Thông báo'
+                    modal_manage.getElementsByClassName(
+                        'modal-body'
+                    )[0].style.display = 'block'
+                    modal_manage.getElementsByClassName(
+                        'modal-body'
+                    )[0].innerHTML = `<div>Các sản phẩm sau đã hết hàng vui lòng bỏ khỏi giỏ hàng để thanh toán :</div>
+                    <ul>
+                    ${out_of_orders_string}
+                    </ul>`
+                    modal_manage.getElementsByClassName(
+                        'modal-footer'
+                    )[0].innerHTML = `                                      
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>`
+                    $('#modal-manage').modal('show')
+                }
+                if (data.code == 502) {
+                    let not_enought_string = ''
+                    for (
+                        let index = 0;
+                        index < data.not_enought.length;
+                        index++
+                    ) {
+                        const element = data.not_enought[index]
+                        not_enought_string += `<li>${element.name}</li>`
+                    }
+                    const modal_manage = document.getElementById('modal-manage')
+                    modal_manage.getElementsByClassName(
+                        'modal-header'
+                    )[0].innerHTML = 'Thông báo'
+                    modal_manage.getElementsByClassName(
+                        'modal-body'
+                    )[0].style.display = 'block'
+                    modal_manage.getElementsByClassName(
+                        'modal-body'
+                    )[0].innerHTML = `<div> Các sản phẩm sau đã hết hàng vui lòng bỏ khỏi giỏ hàng để thanh toán :</div>
+                    <ul>
+                    ${not_enought_string}
+                    </ul>`
+
+                    modal_manage.getElementsByClassName(
+                        'modal-footer'
+                    )[0].innerHTML = `                                      
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>`
+                    $('#modal-manage').modal('show')
+                }
+
+                if (data.code == 200) {
+                    window.location.replace(data.link)
+                }
             })
     })

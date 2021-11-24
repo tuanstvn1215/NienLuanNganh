@@ -11,8 +11,18 @@ block content
       .tile
         h3.tile-title Danh Sách Hàng Hóa
         a(href='/admin/product/create')
-          button.btn.btn-primary.add--order(type='button')
+          .btn.btn-primary.add--order
             | Thêm Hàng Hóa
+        div 
+          span hiện tại bạn đang có #{soon_out_of_order_value} mặt hàng sắp hết hàng 
+          a(href='/admin/product?type=1')
+            .btn.btn-primary.add--order
+              | Xem chi tiết
+        div 
+          span hiện tại bạn đang có #{out_of_order_value} mặt hàng đã hết hàng 
+          a(href='/admin/product?type=2')
+            .btn.btn-primary.add--order
+              | Xem chi tiết
         table.table.table-bordered.table-hover
           thead.thead-light
             tr

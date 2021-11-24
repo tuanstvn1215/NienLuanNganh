@@ -14,18 +14,52 @@ class ProductController extends Controller {
         super()
     }
     show = async (req, res) => {
+        let type = req.query.type || 0
+        const soon_out_of_order_value = await ProductModel.count({
+            status: 1,
+            number: { $lt: 6 },
+        })
+        const out_of_order_value = await ProductModel.count({
+            status: 2,
+        })
+        let products
         const product_category = await ProductCategoryModel.find({ status: 1 })
-        const products = await ProductModel.find({ status: { $ne: 0 } })
-            .sort({ add_at: -1 })
-            .populate({ path: 'provider', model: 'ProductProvider' })
-            .populate({ path: 'category', model: 'ProductCategory' })
-            .limit(30)
-
-            .exec()
+        // bình thường
+        if (type == 0) {
+            products = await ProductModel.find({ status: { $ne: 0 } })
+                .sort({ add_at: -1 })
+                .populate({ path: 'provider', model: 'ProductProvider' })
+                .populate({ path: 'category', model: 'ProductCategory' })
+                .limit(30)
+                .exec()
+        }
+        // sắp hết hàng
+        if (type == 1) {
+            products = await ProductModel.find({
+                status: 1,
+                number: { $lt: 6 },
+            })
+                .sort({ add_at: -1 })
+                .populate({ path: 'provider', model: 'ProductProvider' })
+                .populate({ path: 'category', model: 'ProductCategory' })
+                .limit(30)
+                .exec()
+        }
+        // đã hết hàng
+        if (type == 2) {
+            products = await ProductModel.find({ status: 2 })
+                .sort({ add_at: -1 })
+                .populate({ path: 'provider', model: 'ProductProvider' })
+                .populate({ path: 'category', model: 'ProductCategory' })
+                .limit(30)
+                .exec()
+        }
 
         res.render('admin/product', {
             product_category: product_category,
             products: products,
+            out_of_order_value: out_of_order_value,
+            soon_out_of_order_value: soon_out_of_order_value,
         })
     }
     create = async (req, res) => {
@@ -47,7 +81,8 @@ class ProductController extends Controller {
         let price = req.body.price
         let description = req.body.description
         let img = []
-        console.log(req.body.description)
+        let number = req.body.number
+        console.log(req.body.number)
         try {
             const imageFile = [].concat(req.files.img)
             const paths = imageFile.map((item) => {
@@ -75,6 +110,7 @@ class ProductController extends Controller {
                 category: category,
                 price: price,
                 img: img,
+                number: number,
                 description: description,
             }).catch((err) => {
                 res.json({
@@ -115,7 +151,8 @@ class ProductController extends Controller {
         let description = req.body.description
         let upanh = req.body.upanh
         let img = []
-        console.log(req.body.description)
+        let number = parseInt(req.body.number)
+        console.log(req.body.number)
         try {
             if (upanh) {
                 const imageFile = [].concat(req.files.img)
@@ -135,7 +172,7 @@ class ProductController extends Controller {
                             })
                     })
                 )
-                await ProductModel.findByIdAndUpdate(id, {
+                let x = await ProductModel.findByIdAndUpdate(id, {
                     $set: {
                         name: name,
                         status: status,
@@ -143,6 +180,7 @@ class ProductController extends Controller {
                         category: category,
                         price: price,
                         img: img,
+                        number: number,
                         description: description,
                     },
                 }).catch((err) => {
@@ -151,6 +189,7 @@ class ProductController extends Controller {
                         message: 'lưu thất bại vì lỗi: ' + err.message,
                     })
                 })
+
                 res.redirect('/admin/product')
             } else {
                 await ProductModel.findByIdAndUpdate(id, {
@@ -161,6 +200,7 @@ class ProductController extends Controller {
                         category: category,
                         price: price,
                         description: description,
+                        number: number,
                     },
                 }).catch((err) => {
                     res.json({

@@ -12,6 +12,7 @@ const Schema = new mongoose.Schema({
         type: [String],
         require: true,
     },
+    number: { type: Number, required: true, default: 0 },
     add_at: { type: Date, default: Date.now },
     description: { type: String },
 })
