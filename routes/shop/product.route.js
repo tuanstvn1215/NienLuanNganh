@@ -5,5 +5,7 @@ Router.get('', productController.index)
 Router.get('/show', productController.show)
 Router.get('/findOne', productController.findOne)
 Router.post('/rate', Auth.requireAuth, productController.rate)
+Router.get('/comment', productController.getComment)
+Router.post('/comment', Auth.requireAuth, productController.comment)
 Router.get('/stars', productController.getStars)
 module.exports = Router

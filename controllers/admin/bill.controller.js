@@ -8,8 +8,11 @@ class IndexControllder extends Controller {
     }
 
     getIndex = async (req, res) => {
-        let bills = await BillModel.find({})
-        console.log(bills)
+        let bills = await BillModel.find({}).sort({ date: -1 })
+        for (let index = 0; index < bills.length; index++) {
+            const element = bills[index]
+            element.datestr = element.date.toLocaleString()
+        }
         res.render('admin/bill', { bills: bills })
     }
     show = async (req, res) => {

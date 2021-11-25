@@ -117,3 +117,38 @@ window.onload = function () {
         })
     }
 }
+document.getElementById('btn-send-msg').addEventListener('click', () => {
+    let product_id = document.getElementById('product_id').value
+    let message = document.getElementById('txtreview').value
+    fetch(`/product/comment`, {
+        method: 'post',
+        headers: {
+            'content-type': 'application/json',
+            Cookie: document.cookie,
+        },
+        body: JSON.stringify({ product: product_id, message: message }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            if (data.code == 403) {
+                const modal_manage = document.getElementById('modal-manage')
+                modal_manage.getElementsByClassName(
+                    'modal-header'
+                )[0].innerHTML = 'Thông báo'
+                modal_manage.getElementsByClassName(
+                    'modal-body'
+                )[0].style.display = 'block'
+                modal_manage.getElementsByClassName(
+                    'modal-body'
+                )[0].innerHTML = `<div>Vui lòng đăng nhập</div>`
+                modal_manage.getElementsByClassName(
+                    'modal-footer'
+                )[0].innerHTML = `                                      
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>`
+                $('#modal-manage').modal('show')
+            }
+            if (data.code == 200) {
+                window.location.replace('/product/show?id=' + product_id)
+            }
+        })
+})

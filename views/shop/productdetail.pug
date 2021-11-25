@@ -55,26 +55,24 @@ block content
           li.nav-item
             a#description-tab.nav-link.active(data-toggle='tab', href='#description', role='tab', aria-controls='description', aria-selected='true') Description
           li.nav-item
-            a#review-tab.nav-link(data-toggle='tab', href='#review', role='tab', aria-controls='review', aria-selected='false') Reviews (0)
+            a#review-tab.nav-link(data-toggle='tab', href='#review', role='tab', aria-controls='review', aria-selected='false') Reviews
         #myTabContent.tab-content
           #description.tab-pane.fade.show.active(role='tabpanel', aria-labelledby='description-tab')
             | #{product.description}
           #review.tab-pane.fade(role='tabpanel', aria-labelledby='review-tab')
-            .review-heading REVIEWS
-            p.mb-20 There are no reviews yet.
-            form.review-form
+            .review-heading Bình luận
+            .review-form
               .form-group
-                label Your rating
-                .reviews-counter
-              .form-group
-                label Your message
-                textarea.form-control(rows='10')
-              .row
-                .col-md-6
-                  .form-group
-                    input.form-control(type='text', name='', placeholder='Name*')
-                .col-md-6
-                  .form-group
-                    input.form-control(type='text', name='', placeholder='Email Id*')
-              button.round-blacks-btn Submit Review
+                label Lời nhắn
+                textarea#txtreview.form-control(rows='3')
+              span.round-blacks-btn#btn-send-msg Gửi
+            .incoming_msg
+              if(msg)
+                each item in msg
+                  .received_msg
+                    .received_withd_msg
+                      span.name #{item.user.name}
+                      p.msg_content #{item.message}
+                      span.time_date  #{item.datestr}
+
   script(src="/js/shop/productdetail.js") 

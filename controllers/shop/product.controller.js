@@ -1,5 +1,6 @@
 const Controller = require('../../core/controller')
 const ProductModel = require('../../models/product.model')
+const CommentModel = require('../../models/comment.model')
 const ProductCategoryModel = require('../../models/productCategory.model')
 const ProductProvierderModel = require('../../models/productProvider.model')
 const RateModel = require('../../models/rate.model')
@@ -62,9 +63,11 @@ class productController extends Controller {
         })
     }
     show = async (req, res) => {
+        let product_id = req.query.id
         let all_star_value = await RateModel.find({
-            product: req.query.id,
+            product: product_id,
         })
+        let msg
         let stars_value = 0
         if (all_star_value.length >= 0) {
             for (let index = 0; index < all_star_value.length; index++) {
@@ -74,14 +77,20 @@ class productController extends Controller {
             stars_value = Math.round(stars_value / all_star_value.length)
         }
 
-        console.log(stars_value)
+        msg = await CommentModel.find({ product: product_id })
+            .populate('user')
+            .sort({ date: -1 })
+        for (let index = 0; index < msg.length; index++) {
+            msg[index].datestr = msg[index].date.toLocaleString()
+        }
 
-        let product = await ProductModel.findById(req.query.id)
+        let product = await ProductModel.findById(product_id)
             .populate('category')
             .populate('provider')
         res.render('shop/productdetail', {
             product: product,
             stars_value: stars_value,
+            msg: msg,
         })
     }
     findOne = async (req, res) => {
@@ -118,6 +127,22 @@ class productController extends Controller {
             res.send({ code: 500, message: 'Có lỗi xảy ra' })
         }
     }
+    comment = async (req, res) => {
+        let user_id = res.locals.user.info.id
+        let product = req.body.product
+        let message = req.body.message
+        console.log(req.body)
+        try {
+            await CommentModel.insertMany({
+                user: user_id,
+                product,
+                message: message,
+            })
+            res.send(res.send({ code: 200, message: 'Đánh giá thành công' }))
+        } catch (error) {}
+    }
+    getComment = async (req, res) => {}
+
     getStars = async (req, res) => {}
 }
 module.exports = new productController()
