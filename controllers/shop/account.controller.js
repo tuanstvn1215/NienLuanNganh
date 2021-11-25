@@ -35,6 +35,7 @@ class AccountController extends Controller {
                 path: 'products',
                 populate: { path: 'product', model: 'Product' },
             })
+            .sort({ date: -1 })
             .exec()
         let Orders = []
 
@@ -45,6 +46,9 @@ class AccountController extends Controller {
                 const e = element.products[i]
                 Orders.push(e)
             }
+        }
+        for (let index = 0; index < bills.length; index++) {
+            bills[index].datestr = bills[index].date.toLocaleString()
         }
 
         res.render('shop/accountOrder', { bills: bills, Orders: Orders })
