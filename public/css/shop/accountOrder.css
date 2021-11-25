@@ -225,28 +225,32 @@
 }
 .Account .order-cart-items_heading {
     display: flex;
-    text-align: center;
     align-items: flex-start;
 }
 .Account .items_headding {
     box-sizing: border-box;
     padding: 16px 16px;
-    min-width: 140px;
     font-weight: 700;
+}
+.Account .order-id {
+    min-width: 209.04px;
+    text-align: left;
 }
 .Account .order-date {
     text-align: left;
-    max-width: 204px;
-    width: 100%;
+    min-width: 204px;
+    /* max-width: 204px; */
+    padding-left: 17px;
 }
 .Account .order-product {
     text-align: left;
-    max-width: 355px;
-    width: 100%;
+    min-width: 266.16px;
+    /* max-width: 204px; */
 }
 .Account .order-total {
     text-align: right;
-    max-width: 130px;
+    min-width: 158px;
+    padding-left: 25px;
     width: 100%;
 }
 .Account .order-status {
